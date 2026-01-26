@@ -1,0 +1,5 @@
+{
+  "name": "PayGate Link Generator",
+  "description": "A modern and sleek payment link generator and tracker built with React and Tailwind CSS, integrating with the PayGate API ecosystem for seamless transactions.",
+  "requestFramePermissions": []
+}
