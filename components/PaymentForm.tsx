@@ -6,9 +6,10 @@ import { geminiService } from '../services/geminiService';
 
 interface PaymentFormProps {
       onSuccess: (data: PaymentResponse) => void;
+      onError: (message: string) => void;
 }
 
-const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess }) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess, onError }) => {
       const [loading, setLoading] = useState(false);
       const [suggesting, setSuggesting] = useState(false);
       const [formData, setFormData] = useState<PaymentRequest>({
@@ -53,7 +54,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess }) => {
                   const response = await onramppayService.createPayment(formData);
                   onSuccess(response);
             } catch (err: any) {
-                  alert(`Error: ${err.message || "Failed to create payment link."}`);
+                  const baseMessage = 'An unexpected error happened. Please return to the previous tab and select another payment provider.';
+                  const details = err?.message ? ` Details: ${err.message}` : '';
+                  onError(`${baseMessage}${details}`);
             } finally {
                   setLoading(false);
             }

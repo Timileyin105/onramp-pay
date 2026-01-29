@@ -1,59 +1,36 @@
 # Copilot Instructions for AI Agents
 
-## Project Overview
+## Project overview (React + TypeScript, Vite)
 
-- **Purpose:** This is a React + TypeScript app for generating and tracking payment links using the Paygate API and (optionally) Gemini AI for description suggestions.
-- **Major Components:**
-  - `components/PaymentForm.tsx`: UI for creating payment links, integrates with `onramppayService` and (optionally) `geminiService`.
-  - `components/PaymentTracker.tsx`: (if present) likely for tracking payment status.
-  - `components/Header.tsx`: App branding and navigation.
-  - `services/onramppayService.ts`: Handles Paygate API integration for payment creation and status tracking.
-  - `services/geminiService.ts`: (if present) for AI-powered description suggestions.
-  - `types.ts`: Centralizes TypeScript types for payments, providers, etc.
+- App is a single-page UI with two tabs: create payment links and track payments (see [App.tsx](../App.tsx)).
+- UI lives in `components/`; external API logic lives in `services/`; shared types live in [types.ts](../types.ts).
+- Styling uses Tailwind via CDN script in [index.html](../index.html); no local CSS pipeline.
 
-## Architecture & Data Flow
+## Architecture & data flow
 
-- **Form → Service → API:** User fills out the payment form, which calls `onramppayService.createPayment`. The response is mapped to local types and passed to the UI.
-- **Status Tracking:** Payment status is fetched via `onramppayService.trackPayment`.
-- **AI Integration:** (Optional) `geminiService` can suggest/refine payment descriptions.
-- **Styling:** Uses Tailwind CSS (see `index.html` for CDN import).
+- Create flow: [components/PaymentForm.tsx](../components/PaymentForm.tsx) builds a `PaymentRequest` and calls `onramppayService.createPayment`, then bubbles `PaymentResponse` back to `App` via `onSuccess`.
+- `onramppayService.createPayment` fetches a wallet callback address and composes a checkout URL based on `provider` (see [services/onramppayService.ts](../services/onramppayService.ts)).
+- Track flow: [components/PaymentTracker.tsx](../components/PaymentTracker.tsx) opens the Onramp track URL in a new tab; it does not call the service currently.
+- Optional AI: [services/geminiService.ts](../services/geminiService.ts) wraps @google/genai, but the UI hookup is commented out in `PaymentForm`.
 
-## Developer Workflows
+## Developer workflows
 
-- **Install dependencies:** `npm install`
-- **Run locally:** `npm run dev`
-- **API Keys:** Set `GEMINI_API_KEY` in `.env.local` for Gemini features.
-- **No custom test/build scripts** beyond Vite defaults.
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Gemini key: README expects `.env.local` with `GEMINI_API_KEY`, but the service reads `process.env.API_KEY`; reconcile if enabling AI.
 
-## Project Conventions
+## Project-specific conventions
 
-- **Type Safety:** All API/service interactions use types from `types.ts`.
-- **Error Handling:** API errors are caught and surfaced to the user via alerts or console logs.
-- **Providers/Currencies:** Supported values are hardcoded in `PaymentForm.tsx` for clarity and UI consistency.
-- **Component Structure:** Each UI feature is a separate component in `components/`.
-- **Service Abstraction:** All external API logic is in `services/`.
+- Keep all API calls in `services/` and type everything with `PaymentRequest`, `PaymentResponse`, `PaymentDetails` (see [types.ts](../types.ts)).
+- Provider and currency options are hardcoded for UI consistency; update both `PaymentForm` and `types.ts` when adding providers.
+- Errors from API calls are surfaced via `alert()` in `PaymentForm` and `console.error` in services.
 
-## Integration Points
+## Integration points
 
-- **Paygate API:** See `onramppayService.ts` for endpoint usage and response mapping.
-- **Gemini AI:** (Optional) Used for description suggestions; see commented code in `PaymentForm.tsx`.
+- Onramp Pay endpoints are encapsulated in [services/onramppayService.ts](../services/onramppayService.ts) (`wallet.php`, `checkout`, `status`).
+- Tracking is a direct URL: `https://api.onramp-pay.com/control/track.php?address=...` (see [components/PaymentTracker.tsx](../components/PaymentTracker.tsx)).
 
 ## Examples
 
-- To add a new payment provider, update the `providers` array in `PaymentForm.tsx` and ensure `types.ts` is updated.
-- To add a new API integration, create a new service in `services/` and use types from `types.ts`.
-
-## References
-
-- [README.md](../README.md): Basic setup and run instructions.
-- [services/onramppayService.ts](../services/onramppayService.ts): Paygate API integration details.
-- [components/PaymentForm.tsx](../components/PaymentForm.tsx): Main form logic and conventions.
-
----
-
-**For AI agents:**
-
-- Follow the established service/component/type separation.
-- Use types from `types.ts` for all data models.
-- Keep UI logic in `components/`, API logic in `services/`.
-- Reference this file and the README for workflow and conventions.
+- To add a new provider, update the `providers` array in [components/PaymentForm.tsx](../components/PaymentForm.tsx) and the `PaymentProvider` union in [types.ts](../types.ts).
+- To add a new external API, create a service module in `services/` and call it from a component, mirroring `onramppayService` usage.
