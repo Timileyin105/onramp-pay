@@ -26,8 +26,10 @@ export const onramppayService = {
                         throw new Error(errorData.message || `API Error: ${response.status}`);
                   }
                   const data = await response.json();
+
                   // Compose checkout URL
-                  const checkoutUrl = `https://checkout.onramp-pay.com/pay.php?address=${data.address_in}` +
+                  const endpointFile = request.provider === 'hosted' ? 'pay.php' : 'process-payment.php';
+                  const checkoutUrl = `https://checkout.onramp-pay.com/${endpointFile}?address=${data.address_in}` +
                         `&amount=${request.amount}` +
                         `&provider=${request.provider}` +
                         `&email=${encodeURIComponent(request.customerEmail)}` +
@@ -44,7 +46,7 @@ export const onramppayService = {
                         createdAt: new Date().toISOString()
                   };
             } catch (error) {
-                  console.error("Onramp Pay Create Payment Failed:", error);
+                  console.error("Voodoo Pay Create Payment Failed:", error);
                   throw error;
             }
       },
@@ -76,7 +78,7 @@ export const onramppayService = {
                         walletAddress: data.wallet_address || ''
                   };
             } catch (error) {
-                  console.error("Onramp Pay Track Payment Failed:", error);
+                  console.error("Voodoo Pay Track Payment Failed:", error);
                   throw error;
             }
       }
