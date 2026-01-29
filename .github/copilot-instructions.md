@@ -4,17 +4,17 @@
 
 - **Purpose:** This is a React + TypeScript app for generating and tracking payment links using the Paygate API and (optionally) Gemini AI for description suggestions.
 - **Major Components:**
-  - `components/PaymentForm.tsx`: UI for creating payment links, integrates with `paygateService` and (optionally) `geminiService`.
+  - `components/PaymentForm.tsx`: UI for creating payment links, integrates with `onramppayService` and (optionally) `geminiService`.
   - `components/PaymentTracker.tsx`: (if present) likely for tracking payment status.
   - `components/Header.tsx`: App branding and navigation.
-  - `services/paygateService.ts`: Handles Paygate API integration for payment creation and status tracking.
+  - `services/onramppayService.ts`: Handles Paygate API integration for payment creation and status tracking.
   - `services/geminiService.ts`: (if present) for AI-powered description suggestions.
   - `types.ts`: Centralizes TypeScript types for payments, providers, etc.
 
 ## Architecture & Data Flow
 
-- **Form → Service → API:** User fills out the payment form, which calls `paygateService.createPayment`. The response is mapped to local types and passed to the UI.
-- **Status Tracking:** Payment status is fetched via `paygateService.trackPayment`.
+- **Form → Service → API:** User fills out the payment form, which calls `onramppayService.createPayment`. The response is mapped to local types and passed to the UI.
+- **Status Tracking:** Payment status is fetched via `onramppayService.trackPayment`.
 - **AI Integration:** (Optional) `geminiService` can suggest/refine payment descriptions.
 - **Styling:** Uses Tailwind CSS (see `index.html` for CDN import).
 
@@ -35,7 +35,7 @@
 
 ## Integration Points
 
-- **Paygate API:** See `paygateService.ts` for endpoint usage and response mapping.
+- **Paygate API:** See `onramppayService.ts` for endpoint usage and response mapping.
 - **Gemini AI:** (Optional) Used for description suggestions; see commented code in `PaymentForm.tsx`.
 
 ## Examples
@@ -46,7 +46,7 @@
 ## References
 
 - [README.md](../README.md): Basic setup and run instructions.
-- [services/paygateService.ts](../services/paygateService.ts): Paygate API integration details.
+- [services/onramppayService.ts](../services/onramppayService.ts): Paygate API integration details.
 - [components/PaymentForm.tsx](../components/PaymentForm.tsx): Main form logic and conventions.
 
 ---

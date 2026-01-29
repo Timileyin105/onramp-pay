@@ -2,12 +2,12 @@
 import { PaymentRequest, PaymentResponse, PaymentDetails, PaymentStatus } from '../types';
 
 /**
- * Paygate API Service Wrapper
+ * Onramp Pay API Service Wrapper
  * Documentation: https://documenter.getpostman.com/view/14826208/2sA3Bj9aBi
  */
 const BASE_URL = 'https://onramp-pay.com/api';
 
-export const paygateService = {
+export const onramppayService = {
       /**
        * Generates a new payment link using the checkout API
        */

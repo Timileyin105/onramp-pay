@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Currency, PaymentRequest, PaymentResponse, PaymentProvider } from '../types';
-import { paygateService } from '../services/paygateService';
+import { onramppayService } from '../services/onramppayService';
 import { geminiService } from '../services/geminiService';
 
 interface PaymentFormProps {
@@ -50,7 +50,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess }) => {
             e.preventDefault();
             setLoading(true);
             try {
-                  const response = await paygateService.createPayment(formData);
+                  const response = await onramppayService.createPayment(formData);
                   onSuccess(response);
             } catch (err: any) {
                   alert(`Error: ${err.message || "Failed to create payment link."}`);

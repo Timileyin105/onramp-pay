@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { paygateService } from '../services/paygateService';
+import { onramppayService } from '../services/onramppayService';
 import { PaymentDetails, PaymentStatus } from '../types';
 
 
