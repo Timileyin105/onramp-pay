@@ -11,7 +11,7 @@ const Header: React.FC = () => {
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
                               </div>
-                              <span className="text-xl font-bold text-slate-900 tracking-tight">Voodoo Pay</span>
+                              <span className="text-xl font-bold text-slate-900 tracking-tight">Onramp Pay</span>
                         </div>
                         <nav className="hidden md:flex items-center gap-6">
 

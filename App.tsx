@@ -52,7 +52,7 @@ const App: React.FC = () => {
                                           Instant Payment <span className="text-indigo-600">Links</span>
                                     </h1>
                                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                                          Create and share professional payment links in seconds. Powered by Voodoo Pay for lightning-fast global settlements.
+                                          Create and share professional payment links in seconds. Powered by Onramp Pay for lightning-fast global settlements.
                                     </p>
                               </div>
 
@@ -130,7 +130,7 @@ const App: React.FC = () => {
                                           )}
                                     </div>
 
-                                    {/* Right Column: Payment Link Display + Why Use Voodoo Pay */}
+                                    {/* Right Column: Payment Link Display + Why Use Onramp Pay */}
                                     <div className="space-y-8 sticky top-28">
                                           {activeTab === 'create' && (
                                                 <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-2xl">
@@ -189,7 +189,7 @@ const App: React.FC = () => {
                   <footer className="bg-white border-t border-slate-200 py-12 px-6">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                               <div className="text-slate-500 text-sm">
-                                    © 2025 Voodoo Pay Link Generator. All rights reserved.
+                                    © 2025 Onramp Pay Link Generator. All rights reserved.
                               </div>
                               <div className="flex gap-8 text-sm font-medium text-slate-400">
                                     <a href="#" className="hover:text-indigo-600 transition-colors">Privacy Policy</a>

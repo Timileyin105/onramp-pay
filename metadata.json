@@ -1,5 +1,5 @@
 {
-      "name": "Voodoo Pay Link Generator",
-      "description": "A modern and sleek payment link generator and tracker built with React and Tailwind CSS, integrating with the Voodoo Pay API ecosystem for seamless transactions.",
+      "name": "Onramp Pay Link Generator",
+      "description": "A modern and sleek payment link generator and tracker built with React and Tailwind CSS, integrating with the Onramp Pay API ecosystem for seamless transactions.",
       "requestFramePermissions": []
 }

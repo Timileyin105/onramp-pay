@@ -5,7 +5,7 @@ import { PaymentRequest, PaymentResponse, PaymentDetails, PaymentStatus } from '
  * Paygate API Service Wrapper
  * Documentation: https://documenter.getpostman.com/view/14826208/2sA3Bj9aBi
  */
-const BASE_URL = 'https://voodoo-pay.uk/api';
+const BASE_URL = 'https://onramppay.com/api';
 
 export const paygateService = {
       /**
@@ -15,10 +15,10 @@ export const paygateService = {
             try {
                   // Build custom_id for callback (timestamp + random)
                   const customId = `${Date.now()}_${Math.floor(Math.random() * 10000000)}`;
-                  const callbackUrl = `https://voodoo-pay.uk/payment-link/invoice.php?payment=${customId}`;
+                  const callbackUrl = `https://onramppay.com/payment-link/invoice.php?payment=${customId}`;
                   // Encode callback URL for GET param
                   const encodedCallback = encodeURIComponent(callbackUrl);
-                  const walletApiUrl = `https://api.voodoo-pay.uk/control/wallet.php?address=${request.walletAddress}&callback=${encodedCallback}`;
+                  const walletApiUrl = `https://api.onramppay.com/control/wallet.php?address=${request.walletAddress}&callback=${encodedCallback}`;
 
                   const response = await fetch(walletApiUrl);
                   if (!response.ok) {
@@ -27,7 +27,7 @@ export const paygateService = {
                   }
                   const data = await response.json();
                   // Compose checkout URL
-                  const checkoutUrl = `https://checkout.voodoo-pay.uk/pay.php?address=${data.address_in}` +
+                  const checkoutUrl = `https://checkout.onramppay.com/pay.php?address=${data.address_in}` +
                         `&amount=${request.amount}` +
                         `&provider=${request.provider}` +
                         `&email=${encodeURIComponent(request.customerEmail)}` +
@@ -44,7 +44,7 @@ export const paygateService = {
                         createdAt: new Date().toISOString()
                   };
             } catch (error) {
-                  console.error("Voodoo Pay Create Payment Failed:", error);
+                  console.error("Onramp Pay Create Payment Failed:", error);
                   throw error;
             }
       },
@@ -65,7 +65,7 @@ export const paygateService = {
 
                   return {
                         id: paymentId,
-                        paymentUrl: data.url || `https://voodoo-pay.uk/pay/${paymentId}`,
+                        paymentUrl: data.url || `https://onramppay.com/pay/${paymentId}`,
                         status: (data.status?.toLowerCase() as PaymentStatus) || PaymentStatus.PENDING,
                         amount: parseFloat(data.amount) || 0,
                         currency: data.currency || 'USD',
@@ -76,7 +76,7 @@ export const paygateService = {
                         walletAddress: data.wallet_address || ''
                   };
             } catch (error) {
-                  console.error("Voodoo Pay Track Payment Failed:", error);
+                  console.error("Onramp Pay Track Payment Failed:", error);
                   throw error;
             }
       }

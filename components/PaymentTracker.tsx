@@ -10,7 +10,7 @@ const PaymentTracker: React.FC = () => {
       const handleTrack = (e: React.FormEvent) => {
             e.preventDefault();
             if (!paymentId) return;
-            const url = `https://api.voodoo-pay.uk/control/track.php?address=${paymentId}`;
+            const url = `https://api.onramppay.com/control/track.php?address=${paymentId}`;
             window.open(url, '_blank');
       };
 
