@@ -70,10 +70,10 @@ const App: React.FC = () => {
                                                 <>
                                                       <div className="text-center mb-12">
                                                             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                                                                  Instant Payment <span className="text-indigo-600">Links</span>
+                                                                  Buy Crypto with <span className="text-indigo-600">Card</span>
                                                             </h1>
                                                             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                                                                  Create and share professional payment links in seconds. Powered by Onramp Pay for lightning-fast global settlements.
+                                                                  Create card‑to‑crypto payment links in seconds so customers can pay by card and receive crypto instantly.
                                                             </p>
                                                       </div>
 
