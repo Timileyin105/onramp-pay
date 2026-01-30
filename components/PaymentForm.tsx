@@ -1,8 +1,10 @@
 
+'use client';
+
 import React, { useState } from 'react';
 import { Currency, PaymentRequest, PaymentResponse, PaymentProvider } from '../types';
 import { onramppayService } from '../services/onramppayService';
-import { geminiService } from '../services/geminiService';
+// import { geminiService } from '../services/geminiService'; // TODO: Uncomment when AI suggestions are enabled
 
 interface PaymentFormProps {
       onSuccess: (data: PaymentResponse) => void;
@@ -11,7 +13,6 @@ interface PaymentFormProps {
 
 const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess, onError }) => {
       const [loading, setLoading] = useState(false);
-      const [suggesting, setSuggesting] = useState(false);
       const [formData, setFormData] = useState<PaymentRequest>({
             walletAddress: '',
             customerEmail: '',
@@ -60,14 +61,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess, onError }) => {
             } finally {
                   setLoading(false);
             }
-      };
-
-      const handleSuggestDescription = async () => {
-            //     if (!formData.description) return;
-            //     setSuggesting(true);
-            //     const suggestion = await geminiService.suggestDescription(formData.description);
-            //     setFormData(prev => ({ ...prev, description: suggestion }));
-            //     setSuggesting(false);
       };
 
       // User requested: white background with grey borders

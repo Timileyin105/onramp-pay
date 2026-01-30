@@ -1,20 +1,51 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Onramp Pay - Crypto Payment Link Generator
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1uzPeUSObpuA8c1nf5JO8EHHjsDzS-fqM
+Accept crypto payments with Next.js. Premium payment plugin for card-to-crypto checkout with 20+ providers.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js 18+ and npm
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+
+   ```bash
+   npm install
+   ```
+
+2. Set environment variables in `.env.local`:
+
+   ```bash
+   NEXT_PUBLIC_API_URL=https://api.onramp-pay.com
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Project Structure
+
+- `app/` - Next.js App Router pages and layouts
+- `components/` - Reusable React components
+- `services/` - External API integration (onramppayService, geminiService)
+- `types.ts` - Shared TypeScript type definitions
+- `public/` - Static assets
+
+## Technologies
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React hooks
+- **API Calls**: Fetch API (no proxy needed)

@@ -1,7 +1,7 @@
 
+'use client';
+
 import React, { useState } from 'react';
-import { onramppayService } from '../services/onramppayService';
-import { PaymentDetails, PaymentStatus } from '../types';
 
 
 const PaymentTracker: React.FC = () => {
