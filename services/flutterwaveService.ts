@@ -32,7 +32,7 @@ export const flutterwaveService = {
        * Generate a Flutterwave payment link
        */
       createPaymentLink: async (params: FlutterwavePaymentParams): Promise<string> => {
-            const publicKey = process.env.FLUTTERWAVE_PUBLIC_KEY;
+
             const secretKey = process.env.FLUTTERWAVE_SECRET_KEY;
 
             if (!secretKey) {
