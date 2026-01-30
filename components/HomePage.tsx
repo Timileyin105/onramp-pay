@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
       const [purchaseForm, setPurchaseForm] = useState({
             name: '',
             email: '',
-            paymentMethod: 'card' as PurchaseMethod,
+            paymentMethod: 'crypto' as PurchaseMethod,
       });
       const [purchaseError, setPurchaseError] = useState<string | null>(null);
       const [purchaseLoading, setPurchaseLoading] = useState(false);
@@ -585,7 +585,7 @@ const HomePage: React.FC = () => {
                                                             })
                                                       }
                                                 >
-                                                      <option value="card">Bank Card</option>
+                                                      {/* <option value="card">Bank Card</option> */}
                                                       <option value="crypto">Cryptocurrency</option>
                                                       <option value="onramppay">Bank Card (Onramppay)</option>
                                                 </select>
