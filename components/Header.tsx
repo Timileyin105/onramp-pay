@@ -15,6 +15,7 @@ const Header: React.FC = () => {
             { path: '/payment-generator', label: 'Payment Generator' },
             { path: '/track-payment', label: 'Track Payment' },
             { path: '/minimum-amounts', label: 'Status & Limits' },
+            { path: 'https://documenter.getpostman.com/view/15018241/2sBXc7M4ud', label: 'API Documentation', external: true },
       ];
 
       const closeMenu = () => setIsMenuOpen(false);
@@ -31,13 +32,25 @@ const Header: React.FC = () => {
                               {/* Desktop Navigation */}
                               <nav className="hidden md:flex items-center gap-6">
                                     {navLinks.map((link) => (
-                                          <Link
-                                                key={link.path}
-                                                href={link.path}
-                                                className={`text-sm font-semibold transition-colors ${isActive(link.path) ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600'}`}
-                                          >
-                                                {link.label}
-                                          </Link>
+                                          link.external ? (
+                                                <a
+                                                      key={link.path}
+                                                      href={link.path}
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors"
+                                                >
+                                                      {link.label}
+                                                </a>
+                                          ) : (
+                                                <Link
+                                                      key={link.path}
+                                                      href={link.path}
+                                                      className={`text-sm font-semibold transition-colors ${isActive(link.path) ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600'}`}
+                                                >
+                                                      {link.label}
+                                                </Link>
+                                          )
                                     ))}
                               </nav>
 
@@ -90,17 +103,30 @@ const Header: React.FC = () => {
                                           <nav className="flex-1 overflow-y-auto p-6">
                                                 <div className="space-y-2">
                                                       {navLinks.map((link) => (
-                                                            <Link
-                                                                  key={link.path}
-                                                                  href={link.path}
-                                                                  onClick={closeMenu}
-                                                                  className={`block px-4 py-3 rounded-xl font-semibold transition-all ${isActive(link.path)
-                                                                        ? 'bg-indigo-600 text-white'
-                                                                        : 'text-slate-700 hover:bg-slate-100'
-                                                                        }`}
-                                                            >
-                                                                  {link.label}
-                                                            </Link>
+                                                            link.external ? (
+                                                                  <a
+                                                                        key={link.path}
+                                                                        href={link.path}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        onClick={closeMenu}
+                                                                        className="block px-4 py-3 rounded-xl font-semibold transition-all text-slate-700 hover:bg-slate-100"
+                                                                  >
+                                                                        {link.label}
+                                                                  </a>
+                                                            ) : (
+                                                                  <Link
+                                                                        key={link.path}
+                                                                        href={link.path}
+                                                                        onClick={closeMenu}
+                                                                        className={`block px-4 py-3 rounded-xl font-semibold transition-all ${isActive(link.path)
+                                                                              ? 'bg-indigo-600 text-white'
+                                                                              : 'text-slate-700 hover:bg-slate-100'
+                                                                              }`}
+                                                                  >
+                                                                        {link.label}
+                                                                  </Link>
+                                                            )
                                                       ))}
                                                 </div>
                                           </nav>

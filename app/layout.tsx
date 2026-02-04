@@ -109,6 +109,10 @@ export default function RootLayout({
                                                 Terms of Use
                                           </Link>
                                           <span className="hidden md:inline text-slate-600">•</span>
+                                          <a href="https://documenter.getpostman.com/view/15018241/2sBXc7M4ud" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                API Documentation
+                                          </a>
+                                          <span className="hidden md:inline text-slate-600">•</span>
                                           <a href="#" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                                                 Contact Support
                                           </a>
