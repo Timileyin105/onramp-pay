@@ -13,12 +13,8 @@ dist-ssr
 *.local
 
 # next.js
-.next/*
 /.next/
 /out/
-*.zip
-*.old
-*.gz
 
 
 # vercel
