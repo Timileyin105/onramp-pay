@@ -14,7 +14,7 @@ const Header: React.FC = () => {
             { path: '/', label: 'Home' },
             { path: '/payment-generator', label: 'Payment Generator' },
             { path: '/track-payment', label: 'Track Payment' },
-            { path: '/minimum-amounts', label: 'Pricing' },
+            { path: '/minimum-amounts', label: 'Status & Limits' },
       ];
 
       const closeMenu = () => setIsMenuOpen(false);

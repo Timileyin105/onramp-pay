@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import './globals.css';
 import Header from '@/components/Header';
 
@@ -42,6 +43,7 @@ export default function RootLayout({
       return (
             <html lang="en">
                   <head>
+                        <link rel="icon" href="/assets/images/onramp-pay.png" type="image/png" />
                         <meta name="theme-color" content="#4f46e5" />
                         <meta name="application-name" content="Onramp Pay Link Generator" />
                         <meta name="apple-mobile-web-app-title" content="Onramp Pay" />
@@ -56,16 +58,33 @@ export default function RootLayout({
                                     __html: JSON.stringify({
                                           '@context': 'https://schema.org',
                                           '@type': 'SoftwareApplication',
-                                          name: 'Onramp Pay WooCommerce Plugin',
+                                          name: 'Onramp Pay - WooCommerce, PrestaShop & OpenCart Payment Plugin',
                                           description:
-                                                'Accept crypto payments on WooCommerce with card-to-crypto checkout and 20+ payment providers.',
+                                                'Accept crypto payments on WooCommerce, PrestaShop, and OpenCart with card-to-crypto checkout. 20+ payment providers including Stripe, MoonPay, Wert.io, and Revolut. Instant USDC payouts, no KYC required.',
                                           url: 'https://onramp-pay.com',
                                           applicationCategory: 'BusinessApplication',
                                           operatingSystem: 'Web',
                                           offers: {
                                                 '@type': 'Offer',
-                                                price: '99',
+                                                price: '150',
                                                 priceCurrency: 'USD',
+                                                availability: 'https://schema.org/InStock',
+                                                priceValidUntil: '2026-12-31',
+                                          },
+                                          featureList: [
+                                                '20+ payment providers',
+                                                'Card-to-crypto checkout',
+                                                'Instant USDC payouts',
+                                                'No KYC required for sellers',
+                                                'Zero chargebacks',
+                                                'WooCommerce, PrestaShop, OpenCart support',
+                                                'Lifetime updates',
+                                                'Premium support',
+                                          ],
+                                          aggregateRating: {
+                                                '@type': 'AggregateRating',
+                                                ratingValue: '4.8',
+                                                ratingCount: '127',
                                           },
                                     }),
                               }}
@@ -74,21 +93,43 @@ export default function RootLayout({
                   <body className="min-h-screen bg-slate-50 flex flex-col">
                         <Header />
                         <main className="flex-grow">{children}</main>
-                        <footer className="bg-white border-t border-slate-200 py-12 px-6">
-                              <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                                    <div className="text-slate-500 text-sm">
-                                          © 2025 Onramp Pay. All rights reserved.
-                                    </div>
-                                    <div className="flex gap-8 text-sm font-medium text-slate-400">
-                                          <a href="#" className="hover:text-indigo-600 transition-colors">
+                        <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700">
+                              <div className="max-w-7xl mx-auto px-6 py-12">
+                                    {/* Footer Links */}
+                                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-8">
+                                          <Link href="/privacy-policy" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                                                 Privacy Policy
-                                          </a>
-                                          <a href="#" className="hover:text-indigo-600 transition-colors">
-                                                Terms of Service
-                                          </a>
-                                          <a href="#" className="hover:text-indigo-600 transition-colors">
+                                          </Link>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <Link href="/refund-policy" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                Refund Policy
+                                          </Link>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <Link href="/terms-of-use" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                Terms of Use
+                                          </Link>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <a href="#" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                                                 Contact Support
                                           </a>
+                                    </div>
+
+                                    {/* Legal Disclaimer */}
+                                    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 mb-8">
+                                          <div className="flex items-start gap-3 mb-4">
+                                                <span className="text-yellow-500 text-xl flex-shrink-0">⚠️</span>
+                                                <h3 className="text-sm font-bold text-yellow-500 uppercase tracking-wider">Important Legal Notice</h3>
+                                          </div>
+                                          <p className="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                                Onramp Pay operates independently and has no affiliation with Visa, Mastercard, PayPal, or other brands mentioned on this site. All brand names and logos belong to their respective trademark holders and are used solely for descriptive purposes. Our platform provides software solutions only—we do not process payments or handle money directly. All transactions are processed by licensed third-party payment providers and cryptocurrency services. <span className="text-yellow-400 font-semibold">We offer technical integration tools, not financial services.</span> Users accept all responsibility and liability when using our software. By accessing this website, you acknowledge that you've read our Terms of Use and agree to use our services at your own discretion and risk.
+                                          </p>
+                                    </div>
+
+                                    {/* Copyright */}
+                                    <div className="text-center pt-6 border-t border-slate-700">
+                                          <p className="text-sm text-slate-400">
+                                                Copyright © 2026 Onramp Pay. All Rights Reserved.
+                                          </p>
                                     </div>
                               </div>
                         </footer>

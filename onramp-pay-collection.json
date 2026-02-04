@@ -1,0 +1,384 @@
+{
+      "info": {
+            "_postman_id": "onramp-pay-collection",
+            "name": "Onramp Pay - Payment Gateway API",
+            "description": "Payment gateway API for accepting payments via credit/debit cards, cryptocurrency, and bank transfers. Receive instant payouts to USDC (Polygon) wallet.",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+      },
+      "item": [
+            {
+                  "name": "Standard Integration",
+                  "description": "Standard integration for merchants using Onramp Pay payment system directly.",
+                  "item": [
+                        {
+                              "name": "Create Wallet",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://api.onramp-pay.com/control/wallet.php?address=0xF977814e90dA44bFA03b6295A0616a897441aceC&callback=https://www.example.com/orders.php?number=8271468415326",
+                                          "protocol": "https",
+                                          "host": [
+                                                "api",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "control",
+                                                "wallet.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "address",
+                                                      "value": "0xF977814e90dA44bFA03b6295A0616a897441aceC"
+                                                },
+                                                {
+                                                      "key": "callback",
+                                                      "value": "https://www.example.com/orders.php?number=8271468415326"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Generate a temporary encrypted wallet address. Required parameters: address (USDC Polygon wallet), callback (unique callback URL with GET parameter)."
+                              },
+                              "response": [
+                                    {
+                                          "name": "Success",
+                                          "originalRequest": {
+                                                "method": "GET",
+                                                "header": [],
+                                                "url": {
+                                                      "raw": "https://api.onramp-pay.com/control/wallet.php?address=0xF977814e90dA44bFA03b6295A0616a897441aceC&callback=https://www.example.com/orders.php?number=8271468415326",
+                                                      "protocol": "https",
+                                                      "host": [
+                                                            "api",
+                                                            "onramp-pay",
+                                                            "com"
+                                                      ],
+                                                      "path": [
+                                                            "control",
+                                                            "wallet.php"
+                                                      ],
+                                                      "query": [
+                                                            {
+                                                                  "key": "address",
+                                                                  "value": "0xF977814e90dA44bFA03b6295A0616a897441aceC"
+                                                            },
+                                                            {
+                                                                  "key": "callback",
+                                                                  "value": "https://www.example.com/orders.php?number=8271468415326"
+                                                            }
+                                                      ]
+                                                }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "body": "{\n  \"address_in\": \"eE5A43DAkczRwxoW3IL7sGsRh6CiMx4kkTCccr6n/YMTGhy9b1eeIJLTr9Lho64fJTIeOfgsnJNNc/arqtR1jw==\",\n  \"polygon_address_in\": \"0x756C4D5EAad2165b3841a543Cf851Eed6AAF211B\",\n  \"callback_url\": \"https://www.example.com/orders.php?number=8271468415326\",\n  \"ipn_token\": \"ZEE2cW8zb1N0N2otZEc3eHh3MDNUU1lTMEExYmVvcDBVNlVBcEl5Y01RcmFTMUtpbExHX0V2QTJucXpQRVdGRnQ3dzhmUVhYZUE=\"\n}"
+                                    }
+                              ]
+                        },
+                        {
+                              "name": "Process Payment",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://checkout.onramp-pay.com/process-payment.php?address=eE5A43DAkczRwxoW3IL7sGsRh6CiMx4kkTCccr6n/YMTGhy9b1eeIJLTr9Lho64fJTIeOfgsnJNNc/arqtR1jw==&amount=103.78&provider=moonpay&email=john@example.com&currency=USD",
+                                          "protocol": "https",
+                                          "host": [
+                                                "checkout",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "process-payment.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "address",
+                                                      "value": "eE5A43DAkczRwxoW3IL7sGsRh6CiMx4kkTCccr6n/YMTGhy9b1eeIJLTr9Lho64fJTIeOfgsnJNNc/arqtR1jw=="
+                                                },
+                                                {
+                                                      "key": "amount",
+                                                      "value": "103.78"
+                                                },
+                                                {
+                                                      "key": "provider",
+                                                      "value": "moonpay"
+                                                },
+                                                {
+                                                      "key": "email",
+                                                      "value": "john@example.com"
+                                                },
+                                                {
+                                                      "key": "currency",
+                                                      "value": "USD"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Redirect customer to payment page. Use the encrypted address_in from Create Wallet step."
+                              }
+                        },
+                        {
+                              "name": "Multi-provider Mode (optional)",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://checkout.onramp-pay.com/pay.php?address=eE5A43DAkczRwxoW3IL7sGsRh6CiMx4kkTCccr6n/YMTGhy9b1eeIJLTr9Lho64fJTIeOfgsnJNNc/arqtR1jw==&amount=103.78&email=john@example.com&currency=USD&domain=checkout.onramp-pay.com",
+                                          "protocol": "https",
+                                          "host": [
+                                                "checkout",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "pay.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "address",
+                                                      "value": "eE5A43DAkczRwxoW3IL7sGsRh6CiMx4kkTCccr6n/YMTGhy9b1eeIJLTr9Lho64fJTIeOfgsnJNNc/arqtR1jw=="
+                                                },
+                                                {
+                                                      "key": "amount",
+                                                      "value": "103.78"
+                                                },
+                                                {
+                                                      "key": "email",
+                                                      "value": "john@example.com"
+                                                },
+                                                {
+                                                      "key": "currency",
+                                                      "value": "USD"
+                                                },
+                                                {
+                                                      "key": "domain",
+                                                      "value": "checkout.onramp-pay.com"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Hosted payment page with multi-provider selection. Allows customers to choose payment provider."
+                              }
+                        },
+                        {
+                              "name": "List All Providers",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://api.onramp-pay.com/control/provider-status",
+                                          "protocol": "https",
+                                          "host": [
+                                                "api",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "control",
+                                                "provider-status"
+                                          ]
+                                    },
+                                    "description": "Get list of available payment providers with minimum order values."
+                              }
+                        }
+                  ]
+            },
+            {
+                  "name": "Affiliate System",
+                  "description": "White-label and affiliate integration options.",
+                  "item": [
+                        {
+                              "name": "Affiliate Create Wallet",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://api.onramp-pay.com/control/affiliate.php?address=0xF977814e90dA44bFA03b6295A0616a897441aceC&callback=https://www.example.com/order?number=82176413628089&affiliate=0x3c783c21a0383057D128bae431894a5C19F9Cf06",
+                                          "protocol": "https",
+                                          "host": [
+                                                "api",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "control",
+                                                "affiliate.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "address",
+                                                      "value": "0xF977814e90dA44bFA03b6295A0616a897441aceC"
+                                                },
+                                                {
+                                                      "key": "callback",
+                                                      "value": "https://www.example.com/order?number=82176413628089"
+                                                },
+                                                {
+                                                      "key": "affiliate",
+                                                      "value": "0x3c783c21a0383057D128bae431894a5C19F9Cf06"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Create wallet with affiliate commission. Must provide different merchant and affiliate wallets."
+                              }
+                        },
+                        {
+                              "name": "Custom Affiliate Commission",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://api.onramp-pay.com/control/custom-affiliate.php?address=0xF977814e90dA44bFA03b6295A0616a897441aceC&callback=https://www.example.com/order?number=82173313628090&affiliate=0x3c783c21a0383057D128bae431894a5C19F9Cf06&affiliate_fee=0.01&merchant_fee=0.98",
+                                          "protocol": "https",
+                                          "host": [
+                                                "api",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "control",
+                                                "custom-affiliate.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "address",
+                                                      "value": "0xF977814e90dA44bFA03b6295A0616a897441aceC"
+                                                },
+                                                {
+                                                      "key": "callback",
+                                                      "value": "https://www.example.com/order?number=82173313628090"
+                                                },
+                                                {
+                                                      "key": "affiliate",
+                                                      "value": "0x3c783c21a0383057D128bae431894a5C19F9Cf06"
+                                                },
+                                                {
+                                                      "key": "affiliate_fee",
+                                                      "value": "0.01"
+                                                },
+                                                {
+                                                      "key": "merchant_fee",
+                                                      "value": "0.98"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Set custom commission distribution. Sum of fees must equal 0.99 (1% service fee retained)."
+                              }
+                        }
+                  ]
+            },
+            {
+                  "name": "Utilities",
+                  "item": [
+                        {
+                              "name": "Convert to USD",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://api.onramp-pay.com/control/convert.php?from=EUR&value=1258.31",
+                                          "protocol": "https",
+                                          "host": [
+                                                "api",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "control",
+                                                "convert.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "from",
+                                                      "value": "EUR"
+                                                },
+                                                {
+                                                      "key": "value",
+                                                      "value": "1258.31"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Convert currency amounts to USD for providers that require USD only."
+                              }
+                        },
+                        {
+                              "name": "Check Payment Status",
+                              "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                          "raw": "https://api.onramp-pay.com/control/payment-status.php?ipn_token=YOUR_IPN_TOKEN",
+                                          "protocol": "https",
+                                          "host": [
+                                                "api",
+                                                "onramp-pay",
+                                                "com"
+                                          ],
+                                          "path": [
+                                                "control",
+                                                "payment-status.php"
+                                          ],
+                                          "query": [
+                                                {
+                                                      "key": "ipn_token",
+                                                      "value": "YOUR_IPN_TOKEN"
+                                                }
+                                          ]
+                                    },
+                                    "description": "Check payment status using the IPN token from wallet creation. Returns 'paid' or 'unpaid' status."
+                              }
+                        }
+                  ]
+            },
+            {
+                  "name": "Callback Event",
+                  "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                              "raw": "https://www.example.com/orders.php?number=827746841326&value_coin=105.6&coin=polygon_usdc&txid_in=0xa22a82b4aefbc55f6382e1b5c0b4f0e3c034a654df3bcac431f7fed1942e22bc&txid_out=0x94c2c3e84c2021e6bf377aebf8abf03b49570611bb0c336e357d7f4516f56244&address_in=0x32e854bD1270670C832634CA87858fFd9F3e2c78&value_forwarded_coin=104.016",
+                              "protocol": "https",
+                              "host": [
+                                    "www",
+                                    "example",
+                                    "com"
+                              ],
+                              "path": [
+                                    "orders.php"
+                              ],
+                              "query": [
+                                    {
+                                          "key": "number",
+                                          "value": "827746841326"
+                                    },
+                                    {
+                                          "key": "value_coin",
+                                          "value": "105.6"
+                                    },
+                                    {
+                                          "key": "coin",
+                                          "value": "polygon_usdc"
+                                    },
+                                    {
+                                          "key": "txid_in",
+                                          "value": "0xa22a82b4aefbc55f6382e1b5c0b4f0e3c034a654df3bcac431f7fed1942e22bc"
+                                    },
+                                    {
+                                          "key": "txid_out",
+                                          "value": "0x94c2c3e84c2021e6bf377aebf8abf03b49570611bb0c336e357d7f4516f56244"
+                                    },
+                                    {
+                                          "key": "address_in",
+                                          "value": "0x32e854bD1270670C832634CA87858fFd9F3e2c78"
+                                    },
+                                    {
+                                          "key": "value_forwarded_coin",
+                                          "value": "104.016"
+                                    }
+                              ]
+                        },
+                        "description": "Example of callback event sent to your server when payment is completed. Includes all original parameters plus payment confirmation data."
+                  }
+            }
+      ]
+}

@@ -490,7 +490,7 @@ const HomePage: React.FC = () => {
                                           </li>
                                     </ul>
 
-                                    <a href="#" className="inline-block px-10 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all shadow-lg">
+                                    <a href="https://documenter.getpostman.com/view/15018241/2sBXc7M4ud" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all shadow-lg">
                                           View API Documentation
                                     </a>
                               </div>

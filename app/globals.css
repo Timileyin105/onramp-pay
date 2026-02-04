@@ -10,3 +10,7 @@ body {
       font-family: 'Inter', sans-serif;
       background-color: #f8fafc;
 }
+
+.text-lg {
+      font-size: 0.9rem !important;
+}
