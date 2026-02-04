@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
                                           href="#pricing"
                                           className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold text-base sm:text-lg hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl"
                                     >
-                                          Get Started - $150
+                                          Get Started With - $150
                                     </a>
                                     <Link
                                           href="/payment-generator"
