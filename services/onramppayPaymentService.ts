@@ -30,13 +30,8 @@ export const onramppayPaymentService = {
        */
       createPaymentLink: async (params: OnramppayPaymentParams): Promise<string> => {
             try {
-                  // Build webhook callback URL with reference
-                  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://onramp-pay.com';
-                  const callbackUrl = `${baseUrl}/api/webhook/onramppay?reference=${params.reference}`;
-                  const encodedCallback = encodeURIComponent(callbackUrl);
-
-                  // Call Onramp Pay API to get payment address
-                  const walletApiUrl = `https://api.onramp-pay.com/control/wallet.php?address=${params.walletAddress}&callback=${encodedCallback}`;
+                  const provider = params.metadata?.provider || 'mastercard';
+                  const walletApiUrl = `https://api.onramp-pay.com/control/wallet.php?provider=${encodeURIComponent(provider)}&amount=${encodeURIComponent(String(params.amount))}&paypal_email=${encodeURIComponent(params.email)}`;
 
                   const response = await fetch(walletApiUrl);
                   if (!response.ok) {
@@ -46,12 +41,8 @@ export const onramppayPaymentService = {
 
                   const data = await response.json();
 
-                  // Build checkout URL using the address_in from API
-                  const checkoutUrl = `https://checkout.onramp-pay.com/pay.php?address=${data.address_in}` +
-                        `&amount=${params.amount}` +
-                        `&provider=hosted` +
-                        `&email=${encodeURIComponent(params.email)}` +
-                        `&currency=${params.currency}`;
+                  const redeemId = data.redeem_id || params.reference;
+                  const checkoutUrl = `https://api.onramp-pay.com/control/status.php?redeem_id=${encodeURIComponent(redeemId)}`;
 
                   return checkoutUrl;
             } catch (error) {

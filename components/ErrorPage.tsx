@@ -8,7 +8,7 @@ interface ErrorPageProps {
 
 const ErrorPage: React.FC<ErrorPageProps> = ({ title = 'Something went wrong', message, onBack }) => {
       return (
-            <div className="bg-white p-10 rounded-3xl border border-red-200 shadow-xl">
+            <div className="bg-white/90 backdrop-blur p-10 rounded-3xl border border-red-200/80 shadow-2xl">
                   <div className="flex items-center gap-4 mb-4">
                         <div className="h-12 w-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

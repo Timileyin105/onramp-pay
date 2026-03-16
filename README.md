@@ -15,7 +15,7 @@ Accept crypto payments with Next.js. Premium payment plugin for card-to-crypto c
 2. Set environment variables in `.env.local`:
 
    ```bash
-   NEXT_PUBLIC_API_URL=https://api.onramp-pay.com
+   NEXT_PUBLIC_API_URL=https://api.onramp-pay.com/control
    GEMINI_API_KEY=your_gemini_api_key_here
    ```
 

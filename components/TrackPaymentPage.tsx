@@ -8,35 +8,35 @@ const TrackPaymentPage: React.FC = () => {
       const handleTrack = (e: React.FormEvent) => {
             e.preventDefault();
             if (!paymentId) return;
-            const url = `https://api.onramp-pay.com/control/track.php?address=${paymentId}`;
+            const url = `https://api.onramp-pay.com/control/status.php?redeem_id=${encodeURIComponent(paymentId)}`;
             window.open(url, '_blank');
       };
 
       const inputClasses = "w-full pl-12 pr-4 py-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-400 text-slate-900 shadow-sm";
 
       return (
-            <div className="min-h-screen bg-slate-50 py-12 px-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
                   <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-12">
                               <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                                    Track Payment Status
+                                    Track Card Order Status
                               </h1>
                               <p className="text-lg text-slate-600">
-                                    Enter your payment tracking ID to view real-time transaction status
+                                    Enter your redeem ID to view card payment status and redeem details
                               </p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div className="bg-white/90 backdrop-blur p-8 rounded-3xl border border-slate-200/80 shadow-xl">
                               <form onSubmit={handleTrack} className="space-y-4 mb-8">
                                     <div>
                                           <label className="text-sm font-semibold text-slate-700 block mb-1.5">
-                                                Payment Tracking ID
+                                                Redeem ID
                                           </label>
                                           <div className="relative">
                                                 <input
                                                       type="text"
                                                       className={inputClasses}
-                                                      placeholder="Enter Tracking ID"
+                                                      placeholder="Enter Redeem ID"
                                                       value={paymentId}
                                                       onChange={(e) => setPaymentId(e.target.value)}
                                                 />
@@ -52,45 +52,45 @@ const TrackPaymentPage: React.FC = () => {
                                           disabled={!paymentId}
                                           className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all disabled:opacity-50 shadow-lg shadow-indigo-100"
                                     >
-                                          Track Payment
+                                          Track Order
                                     </button>
                               </form>
 
                               <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
                                     <h3 className="text-sm font-bold text-blue-900 mb-2">💡 How to find your Tracking ID</h3>
                                     <ul className="text-sm text-blue-800 space-y-2">
-                                          <li>• If you created a payment link, the tracking ID was displayed after generation</li>
-                                          <li>• Check your email confirmation for the tracking ID</li>
-                                          <li>• The tracking ID is the wallet address used for the transaction</li>
+                                          <li>• If you created a card order, the redeem ID was returned after generation</li>
+                                          <li>• Save your redeem ID immediately. It is required for status checks and redemption</li>
+                                          <li>• You can use this page to monitor when payment is marked paid and card issuance is completed</li>
                                     </ul>
                               </div>
                         </div>
 
-                        <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200">
-                              <h2 className="text-xl font-bold text-slate-900 mb-4">Payment Status Information</h2>
+                        <div className="mt-8 bg-white/90 backdrop-blur p-6 rounded-3xl border border-slate-200/80 shadow-xl">
+                              <h2 className="text-xl font-bold text-slate-900 mb-4">Card Status Information</h2>
                               <div className="space-y-3 text-sm text-slate-600">
                                     <div className="flex items-start gap-3">
                                           <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
                                           <div>
-                                                <strong className="text-slate-900">Pending:</strong> Payment has been initiated but not yet confirmed
+                                                <strong className="text-slate-900">Unpaid:</strong> Deposit is not confirmed yet
                                           </div>
                                     </div>
                                     <div className="flex items-start gap-3">
                                           <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                                           <div>
-                                                <strong className="text-slate-900">Paid:</strong> Payment confirmed, crypto has been sent to the recipient
+                                                <strong className="text-slate-900">Paid:</strong> Payment confirmed and card can proceed to issuance
                                           </div>
                                     </div>
                                     <div className="flex items-start gap-3">
                                           <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
                                           <div>
-                                                <strong className="text-slate-900">Expired:</strong> Payment window has closed without completion
+                                                <strong className="text-slate-900">Pending Issuer:</strong> Payment received but card issuer still processing
                                           </div>
                                     </div>
                                     <div className="flex items-start gap-3">
                                           <div className="w-2 h-2 bg-gray-500 rounded-full mt-2"></div>
                                           <div>
-                                                <strong className="text-slate-900">Cancelled:</strong> Payment was cancelled by user or system
+                                                <strong className="text-slate-900">Completed:</strong> Redeem link is available in API response
                                           </div>
                                     </div>
                               </div>

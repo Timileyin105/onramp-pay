@@ -6,14 +6,14 @@ import Header from '@/components/Header';
 export const metadata: Metadata = {
       title: 'Onramp Pay - WooCommerce Crypto Payment Plugin',
       description:
-            'Accept crypto payments on WooCommerce. Premium payment plugin for card-to-crypto checkout with 20+ providers. Free payment link generator included.',
+            'Accept crypto payments on WooCommerce. Free payment plugin for card-to-crypto checkout with 20+ providers. Free payment link generator included.',
       keywords:
             'WooCommerce crypto payment, woocommerce bitcoin, card to crypto, buy crypto with card, crypto payments, onramp, fiat to crypto, crypto checkout, payment links, crypto onramp, woocommerce payment gateway',
       robots: 'index, follow',
       openGraph: {
             title: 'Onramp Pay - WooCommerce Crypto Payment Plugin',
             description:
-                  'Accept crypto payments on WooCommerce with 20+ payment providers. Premium plugin with card-to-crypto checkout.',
+                  'Accept crypto payments on WooCommerce with 20+ payment providers. Free plugin with card-to-crypto checkout.',
             type: 'website',
             url: 'https://onramp-pay.com',
             siteName: 'Onramp Pay',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
             card: 'summary_large_image',
             title: 'Onramp Pay - WooCommerce Crypto Payment Plugin',
             description:
-                  'Accept crypto payments on WooCommerce with 20+ payment providers. Premium plugin with card-to-crypto checkout.',
+                  'Accept crypto payments on WooCommerce with 20+ payment providers. Free plugin with card-to-crypto checkout.',
             images: ['https://onramp-pay.com/assets/images/onramp-pay.png'],
       },
 };
@@ -66,7 +66,7 @@ export default function RootLayout({
                                           operatingSystem: 'Web',
                                           offers: {
                                                 '@type': 'Offer',
-                                                price: '150',
+                                                price: '0',
                                                 priceCurrency: 'USD',
                                                 availability: 'https://schema.org/InStock',
                                                 priceValidUntil: '2026-12-31',
@@ -79,7 +79,7 @@ export default function RootLayout({
                                                 'Zero chargebacks',
                                                 'WooCommerce, PrestaShop, OpenCart support',
                                                 'Lifetime updates',
-                                                'Premium support',
+                                                'Free plugin download',
                                           ],
                                           aggregateRating: {
                                                 '@type': 'AggregateRating',
@@ -109,7 +109,27 @@ export default function RootLayout({
                                                 Terms of Use
                                           </Link>
                                           <span className="hidden md:inline text-slate-600">•</span>
-                                          <a href="https://documenter.getpostman.com/view/15018241/2sBXc7M4ud" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                          <Link href="/no-kyc-virtual-credit-card" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                No KYC Cards
+                                          </Link>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <Link href="/virtual-card-policies" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                Card Info & Restrictions
+                                          </Link>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                WooCommerce Plugin
+                                          </a>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                PrestaShop Plugin
+                                          </a>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                OpenCart Plugin
+                                          </a>
+                                          <span className="hidden md:inline text-slate-600">•</span>
+                                          <a href="https://documenter.getpostman.com/view/14826208/2sBXcHiz2s" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                                                 API Documentation
                                           </a>
                                           <span className="hidden md:inline text-slate-600">•</span>

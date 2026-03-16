@@ -10,21 +10,21 @@ const PaymentTracker: React.FC = () => {
       const handleTrack = (e: React.FormEvent) => {
             e.preventDefault();
             if (!paymentId) return;
-            const url = `https://api.onramp-pay.com/control/track.php?address=${paymentId}`;
+            const url = `https://api.onramp-pay.com/control/status.php?redeem_id=${encodeURIComponent(paymentId)}`;
             window.open(url, '_blank');
       };
 
       const inputClasses = "w-full pl-12 pr-4 py-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-400 text-slate-900 shadow-sm";
 
       return (
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Track Payment</h2>
+            <div className="bg-white/90 backdrop-blur p-8 rounded-3xl border border-slate-200/80 shadow-xl">
+                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Track No-KYC Card Order</h2>
                   <form onSubmit={handleTrack} className="space-y-4 mb-8">
                         <div className="relative">
                               <input
                                     type="text"
                                     className={inputClasses}
-                                    placeholder="Enter Tracking ID"
+                                    placeholder="Enter Redeem ID"
                                     value={paymentId}
                                     onChange={(e) => setPaymentId(e.target.value)}
                               />
@@ -39,11 +39,11 @@ const PaymentTracker: React.FC = () => {
                               disabled={!paymentId}
                               className="w-full bg-slate-900 text-white py-3 rounded-xl font-semibold hover:bg-slate-800 transition-all disabled:opacity-50"
                         >
-                              Track Payment
+                              Track Order
                         </button>
                   </form>
                   <div className="text-center py-8 text-slate-400">
-                        <p className="text-sm">Enter a Payment ID and click Track Payment to view live status in a new tab.</p>
+                        <p className="text-sm">Enter your redeem ID and open live status/redeem details in a new tab.</p>
                   </div>
             </div>
       );

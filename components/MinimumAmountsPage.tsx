@@ -2,7 +2,7 @@ import React from 'react';
 
 const MinimumAmountsPage: React.FC = () => {
       return (
-            <div className="min-h-screen bg-slate-50 py-12 px-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
                   <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
                               <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
@@ -13,11 +13,11 @@ const MinimumAmountsPage: React.FC = () => {
                               </p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg">
+                        <div className="bg-white/90 backdrop-blur p-8 rounded-3xl border border-slate-200/80 shadow-xl">
                               <div className="overflow-x-auto">
                                     <table className="min-w-full text-sm bg-transparent">
                                           <thead>
-                                                <tr className="bg-indigo-600 text-white">
+                                                <tr className="bg-gradient-to-r from-indigo-600 to-cyan-600 text-white">
                                                       <th className="py-4 px-6 text-left font-bold rounded-tl-xl">Payment Provider</th>
                                                       <th className="py-4 px-6 text-center font-bold">Minimum Order Amount</th>
                                                       <th className="py-4 px-6 text-center font-bold rounded-tr-xl">Status</th>

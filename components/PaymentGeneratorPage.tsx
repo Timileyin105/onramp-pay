@@ -34,7 +34,7 @@ const PaymentGeneratorPage: React.FC = () => {
       };
 
       return (
-            <div className="min-h-screen bg-slate-50 py-12 px-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
                   {/* Toast Notification */}
                   {toast && (
                         <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
@@ -60,7 +60,7 @@ const PaymentGeneratorPage: React.FC = () => {
                                     <PaymentForm onSuccess={handlePaymentSuccess} onError={handlePaymentError} />
 
                                     {lastPayment && (
-                                          <div ref={shareableUrlRef} className="mt-2 p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+                                          <div ref={shareableUrlRef} className="mt-2 p-6 rounded-3xl border border-slate-200/80 bg-white/90 backdrop-blur shadow-xl">
                                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Shareable URL</label>
                                                 <div className="flex items-center gap-2 mb-4">
                                                       <input
@@ -106,7 +106,7 @@ const PaymentGeneratorPage: React.FC = () => {
 
                               {/* Right Column: Info */}
                               <div className="space-y-6 sticky top-28">
-                                    <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg">
+                                    <div className="bg-white/90 backdrop-blur p-8 rounded-3xl border border-slate-200/80 shadow-xl">
                                           <h2 className="text-2xl font-bold mb-4 text-slate-900">How It Works</h2>
                                           <div className="space-y-4">
                                                 <div className="flex gap-4">
@@ -133,10 +133,10 @@ const PaymentGeneratorPage: React.FC = () => {
                                           </div>
                                     </div>
 
-                                    <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-3xl border border-purple-200">
+                                    <div className="bg-gradient-to-br from-indigo-50 to-cyan-50 p-8 rounded-3xl border border-indigo-200/80 shadow-lg">
                                           <h2 className="text-xl font-bold mb-3 text-slate-900">Need This for WooCommerce?</h2>
                                           <p className="text-sm text-slate-600 mb-4">
-                                                Integrate card-to-crypto payments directly into your WooCommerce store with our premium plugin.
+                                                Integrate card-to-crypto payments directly into your WooCommerce store with our free plugin download.
                                           </p>
                                           <a href="/" className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all">
                                                 View WooCommerce Plugin

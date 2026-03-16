@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 const RefundPolicyPage: React.FC = () => {
       return (
-            <div className="min-h-screen bg-slate-50 py-12 px-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
                   <div className="max-w-4xl mx-auto">
-                        <div className="bg-white rounded-3xl border border-slate-200 shadow-lg p-8 md:p-12">
+                        <div className="bg-white/90 backdrop-blur rounded-3xl border border-slate-200/80 shadow-xl p-8 md:p-12">
                               <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 text-center">
                                     Refund Policy
                               </h1>

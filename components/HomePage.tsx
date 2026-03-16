@@ -1,83 +1,128 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { purchaseService } from '@/services/purchaseService';
-
-type PurchaseMethod = 'card' | 'crypto' | 'onramppay';
-
-type PlanOption = {
-      name: string;
-      amount: number;
-};
 
 const HomePage: React.FC = () => {
-      const [isPurchaseOpen, setIsPurchaseOpen] = useState(false);
-      const [selectedPlan, setSelectedPlan] = useState<PlanOption | null>(null);
-      const [purchaseForm, setPurchaseForm] = useState({
-            name: '',
-            email: '',
-            paymentMethod: 'crypto' as PurchaseMethod,
-      });
-      const [purchaseError, setPurchaseError] = useState<string | null>(null);
-      const [purchaseLoading, setPurchaseLoading] = useState(false);
-
-      const openPurchaseModal = (plan: PlanOption) => {
-            setSelectedPlan(plan);
-            setPurchaseError(null);
-            setIsPurchaseOpen(true);
-      };
-
-      const closePurchaseModal = () => {
-            setIsPurchaseOpen(false);
-            setPurchaseLoading(false);
-      };
-
-      const handlePurchaseSubmit = async (event: React.FormEvent) => {
-            event.preventDefault();
-            if (!selectedPlan) return;
-            setPurchaseLoading(true);
-            setPurchaseError(null);
-            try {
-                  const response = await purchaseService.createTransaction({
-                        name: purchaseForm.name,
-                        email: purchaseForm.email,
-                        plan: selectedPlan.name,
-                        amount: selectedPlan.amount,
-                        currency: 'USD',
-                        paymentMethod: purchaseForm.paymentMethod,
-                  });
-                  window.location.href = response.redirectUrl;
-            } catch (error) {
-                  const message = error instanceof Error ? error.message : 'Unable to create transaction.';
-                  setPurchaseError(message);
-                  setPurchaseLoading(false);
-            }
-      };
       return (
-            <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
+            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50">
                   {/* Hero Section */}
-                  <section className="min-h-screen flex items-center justify-center px-6">
-                        <div className="max-w-6xl mx-auto text-center mb-[20%] sm:mb-0">
-                              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
-                                    Accept <span className="text-indigo-600">Crypto Payments</span> on Your E-Commerce Store
-                              </h1>
-                              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                                    Powerful plugins for WooCommerce, PrestaShop, OpenCart, and API integration. Let customers pay with credit/debit cards and receive crypto instantly.
-                              </p>
-                              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                                    <a
-                                          href="#pricing"
-                                          className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold text-base sm:text-lg hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl"
-                                    >
-                                          Get Started With - $150
-                                    </a>
-                                    <Link
-                                          href="/payment-generator"
-                                          className="w-full sm:w-auto px-8 py-4 bg-white text-indigo-600 border-2 border-indigo-600 rounded-xl font-bold text-base sm:text-lg hover:bg-indigo-50 transition-all"
-                                    >
-                                          Try Payment Link Generator
-                                    </Link>
+                  <section className="min-h-screen flex items-center justify-center px-6 py-16">
+                        <div className="max-w-7xl mx-auto w-full">
+                              <div className="grid lg:grid-cols-2 gap-10 items-center">
+                                    <div>
+                                          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-indigo-200 px-4 py-2 text-xs font-semibold text-indigo-700 uppercase tracking-wider mb-3">
+                                                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                                Live checkout infrastructure
+                                          </div>
+                                          <div className="flex flex-wrap items-center gap-3 mb-6">
+                                                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 text-white shadow-lg shadow-slate-300/60">
+                                                      <img src="/assets/images/onramp-pay-white.png" alt="Onramp Pay White" className="h-7 w-auto" />
+                                                      <span className="text-xs font-semibold tracking-wide">Dark</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-slate-200 shadow-sm">
+                                                      <img src="/assets/images/onramp-pay.png" alt="Onramp Pay" className="h-7 w-auto" />
+                                                      <span className="text-xs font-semibold text-slate-700 tracking-wide">Light</span>
+                                                </div>
+                                                <span className="px-3 py-2 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">✨ Brand-ready assets</span>
+                                          </div>
+                                          <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
+                                                Modern <span className="text-indigo-600">Card-to-Crypto</span> Checkout for Fast Teams
+                                          </h1>
+                                          <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
+                                                Launch no-code payment links, no-KYC virtual cards, and plugin integrations with one consistent workflow. Share a link and start collecting in minutes.
+                                          </p>
+                                          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                                                <a
+                                                      href="https://onramp-pay.com/downloads/onramppay-plugin.zip"
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold text-base hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl"
+                                                >
+                                                      Download Plugin For Free
+                                                </a>
+                                                <Link
+                                                      href="/no-kyc-virtual-credit-card"
+                                                      className="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-base hover:bg-slate-800 transition-all"
+                                                >
+                                                      No KYC Virtual Cards
+                                                </Link>
+                                                <Link
+                                                      href="/payment-generator"
+                                                      className="w-full sm:w-auto px-8 py-4 bg-white text-indigo-600 border-2 border-indigo-600 rounded-xl font-bold text-base hover:bg-indigo-50 transition-all"
+                                                >
+                                                      Try Payment Link Generator
+                                                </Link>
+                                          </div>
+                                          <div className="mt-7 flex flex-wrap gap-2">
+                                                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700">🚀 Hosted Checkout</span>
+                                                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700">🛡️ Fraud-lite Routing</span>
+                                                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700">💳 No-KYC Cards</span>
+                                                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700">🧾 Invoice Links</span>
+                                          </div>
+                                    </div>
+
+                                    <div className="relative">
+                                          <div className="rounded-3xl border border-slate-200 bg-white/90 backdrop-blur p-7 shadow-xl">
+                                                <div className="flex items-center justify-between mb-5">
+                                                      <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500">Live Preview</h3>
+                                                      <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Pending</span>
+                                                </div>
+                                                <div className="space-y-3">
+                                                      <div className="rounded-xl border border-slate-200 p-3 bg-slate-50">
+                                                            <p className="text-xs text-slate-500">Payer</p>
+                                                            <p className="text-sm font-semibold text-slate-900">customer@email.com</p>
+                                                      </div>
+                                                      <div className="grid grid-cols-2 gap-3">
+                                                            <div className="rounded-xl border border-slate-200 p-3 bg-slate-50">
+                                                                  <p className="text-xs text-slate-500">Amount</p>
+                                                                  <p className="text-sm font-semibold text-slate-900">150 USD</p>
+                                                            </div>
+                                                            <div className="rounded-xl border border-slate-200 p-3 bg-slate-50">
+                                                                  <p className="text-xs text-slate-500">Provider</p>
+                                                                  <p className="text-sm font-semibold text-slate-900">Mastercard</p>
+                                                            </div>
+                                                      </div>
+                                                      <div className="rounded-xl border border-indigo-200 p-3 bg-indigo-50">
+                                                            <p className="text-xs text-indigo-700">Tracking ID</p>
+                                                            <p className="text-xs font-mono text-indigo-900 break-all">_nK2qUzxf1EM4NnNjAGypJ2n</p>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <div className="absolute -z-10 -top-6 -right-6 w-44 h-44 rounded-full bg-cyan-200/50 blur-3xl"></div>
+                                          <div className="absolute -z-10 -bottom-6 -left-6 w-44 h-44 rounded-full bg-indigo-200/60 blur-3xl"></div>
+                                    </div>
+                              </div>
+                        </div>
+                  </section>
+
+                  {/* Feature Highlights */}
+                  <section className="py-16 px-6 bg-white">
+                        <div className="max-w-7xl mx-auto">
+                              <div className="text-center mb-12 space-y-3">
+                                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-indigo-600">Feature Stack</p>
+                                    <h2 className="text-4xl font-extrabold text-slate-900">All-in-one rails for bold teams</h2>
+                                    <p className="text-lg text-slate-600 max-w-3xl mx-auto">Ship faster with prebuilt flows, zero-KYC cards, crypto QR invoices, and plugin starters that work together.</p>
+                              </div>
+
+                              <div className="grid md:grid-cols-3 gap-6">
+                                    {[
+                                          { emoji: '🧾', title: 'Payment Links', desc: 'Spin up branded payment links with shareable tracking in seconds.' },
+                                          { emoji: '🛡️', title: 'No-KYC Cards', desc: 'Issue Visa, Mastercard, or PayPal gift cards with Polygon USDT funding.' },
+                                          { emoji: '💸', title: 'Crypto QR', desc: 'Generate coin amounts, QR, and address-in for every invoice automatically.' },
+                                          { emoji: '🔌', title: 'Plugins', desc: 'WooCommerce, PrestaShop, and OpenCart downloads ready to drop in.' },
+                                          { emoji: '📡', title: 'Status & Webhooks', desc: 'Live status checks and callbacks keep your backoffice in sync.' },
+                                          { emoji: '🌎', title: '20+ Providers', desc: 'Stripe, MoonPay, Wert, Revolut, and more—pick the best route per buyer.' },
+                                    ].map((item) => (
+                                          <div key={item.title} className="p-6 rounded-2xl border border-slate-200 bg-slate-50/60 hover:bg-white transition-all shadow-sm hover:shadow-md">
+                                                <div className="flex items-center gap-3 mb-3">
+                                                      <span className="text-2xl" aria-hidden>{item.emoji}</span>
+                                                      <span className="px-2.5 py-1 text-xs font-bold bg-indigo-100 text-indigo-700 rounded-full">LIVE</span>
+                                                </div>
+                                                <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
+                                                <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                                          </div>
+                                    ))}
                               </div>
                         </div>
                   </section>
@@ -171,10 +216,12 @@ const HomePage: React.FC = () => {
 
                                           <div className="mt-10">
                                                 <a
-                                                      href="#pricing"
+                                                      href="https://onramp-pay.com/downloads/onramppay-plugin.zip"
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
                                                       className="inline-block px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl"
                                                 >
-                                                      Get Started Now
+                                                      Download Plugin
                                                 </a>
                                           </div>
                                     </div>
@@ -310,155 +357,9 @@ const HomePage: React.FC = () => {
                         </div>
                   </section>
 
-                  {/* Pricing */}
-                  <section id="pricing" className="py-16 px-6 bg-white">
+                  {/* API Documentation CTA */}
+                  <section className="py-16 px-6 bg-white">
                         <div className="max-w-6xl mx-auto">
-                              <div className="text-center mb-12">
-                                    <h2 className="text-4xl font-bold text-slate-900 mb-4">Simple, Transparent Pricing</h2>
-                                    <p className="text-xl text-slate-600">One-time payment per platform • Lifetime updates</p>
-                              </div>
-
-                              <div className="grid md:grid-cols-3 gap-8 mb-12">
-                                    {/* WooCommerce */}
-                                    <div className="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-2xl">
-                                          <h3 className="text-2xl font-bold mb-3">WooCommerce</h3>
-                                          <div className="text-5xl font-extrabold mb-2">$150</div>
-                                          <p className="text-indigo-100 mb-6 text-sm">One-time payment</p>
-                                          <ul className="text-left space-y-2 mb-6 text-sm">
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>20+ Payment Providers</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Unlimited transactions</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Auto order updates</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Lifetime updates</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Premium support</span>
-                                                </li>
-                                          </ul>
-                                          <button
-                                                type="button"
-                                                onClick={() => openPurchaseModal({ name: 'WooCommerce', amount: 150 })}
-                                                className="block w-full px-6 py-3 bg-white text-indigo-600 rounded-xl font-bold text-center hover:bg-gray-50 transition-all"
-                                          >
-                                                Purchase
-                                          </button>
-                                    </div>
-
-                                    {/* PrestaShop */}
-                                    <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 text-white shadow-2xl">
-                                          <h3 className="text-2xl font-bold mb-3">PrestaShop</h3>
-                                          <div className="text-5xl font-extrabold mb-2">$150</div>
-                                          <p className="text-purple-100 mb-6 text-sm">One-time payment</p>
-                                          <ul className="text-left space-y-2 mb-6 text-sm">
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>20+ Payment Providers</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Unlimited transactions</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Auto order updates</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Lifetime updates</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Premium support</span>
-                                                </li>
-                                          </ul>
-                                          <button
-                                                type="button"
-                                                onClick={() => openPurchaseModal({ name: 'PrestaShop', amount: 150 })}
-                                                className="block w-full px-6 py-3 bg-white text-purple-600 rounded-xl font-bold text-center hover:bg-gray-50 transition-all"
-                                          >
-                                                Purchase
-                                          </button>
-                                    </div>
-
-                                    {/* OpenCart */}
-                                    <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl p-8 text-white shadow-2xl">
-                                          <h3 className="text-2xl font-bold mb-3">OpenCart</h3>
-                                          <div className="text-5xl font-extrabold mb-2">$150</div>
-                                          <p className="text-blue-100 mb-6 text-sm">One-time payment</p>
-                                          <ul className="text-left space-y-2 mb-6 text-sm">
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>20+ Payment Providers</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Unlimited transactions</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Auto order updates</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Lifetime updates</span>
-                                                </li>
-                                                <li className="flex items-start gap-2">
-                                                      <svg className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                      </svg>
-                                                      <span>Premium support</span>
-                                                </li>
-                                          </ul>
-                                          <button
-                                                type="button"
-                                                onClick={() => openPurchaseModal({ name: 'OpenCart', amount: 150 })}
-                                                className="block w-full px-6 py-3 bg-white text-blue-600 rounded-xl font-bold text-center hover:bg-gray-50 transition-all"
-                                          >
-                                                Purchase
-                                          </button>
-                                    </div>
-                              </div>
-
-                              {/* API Documentation CTA */}
                               <div className="bg-slate-900 rounded-3xl p-12 text-white shadow-2xl text-center">
                                     <h3 className="text-3xl font-bold mb-4">Need Custom Integration?</h3>
                                     <p className="text-slate-300 mb-6 text-lg">Use our API to build your own payment solution</p>
@@ -490,7 +391,7 @@ const HomePage: React.FC = () => {
                                           </li>
                                     </ul>
 
-                                    <a href="https://documenter.getpostman.com/view/15018241/2sBXc7M4ud" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all shadow-lg">
+                                    <a href="https://documenter.getpostman.com/view/14826208/2sBXcHiz2s" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all shadow-lg">
                                           View API Documentation
                                     </a>
                               </div>
@@ -512,96 +413,6 @@ const HomePage: React.FC = () => {
                               </Link>
                         </div>
                   </section>
-                  {isPurchaseOpen && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-                              <div
-                                    className="absolute inset-0 bg-slate-900/60"
-                                    onClick={closePurchaseModal}
-                                    role="button"
-                                    aria-label="Close purchase modal"
-                              />
-                              <div className="relative w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl">
-                                    <div className="flex items-start justify-between gap-4 mb-6">
-                                          <div>
-                                                <h3 className="text-2xl font-bold text-slate-900">Complete your purchase</h3>
-                                                <p className="text-sm text-slate-500">{selectedPlan?.name} • ${selectedPlan?.amount}</p>
-                                          </div>
-                                          <button
-                                                type="button"
-                                                onClick={closePurchaseModal}
-                                                className="text-slate-500 hover:text-slate-700"
-                                                aria-label="Close"
-                                          >
-                                                ✕
-                                          </button>
-                                    </div>
-
-                                    {purchaseError && (
-                                          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                                                {purchaseError}
-                                          </div>
-                                    )}
-
-                                    <form onSubmit={handlePurchaseSubmit} className="space-y-4">
-                                          <div>
-                                                <label className="text-sm font-semibold text-slate-700 block mb-1.5">
-                                                      Full Name
-                                                </label>
-                                                <input
-                                                      type="text"
-                                                      required
-                                                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                                                      placeholder="John Doe"
-                                                      value={purchaseForm.name}
-                                                      onChange={(event) => setPurchaseForm({ ...purchaseForm, name: event.target.value })}
-                                                />
-                                          </div>
-
-                                          <div>
-                                                <label className="text-sm font-semibold text-slate-700 block mb-1.5">
-                                                      Email Address
-                                                </label>
-                                                <input
-                                                      type="email"
-                                                      required
-                                                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                                                      placeholder="johndoe@gmail.com"
-                                                      value={purchaseForm.email}
-                                                      onChange={(event) => setPurchaseForm({ ...purchaseForm, email: event.target.value })}
-                                                />
-                                          </div>
-
-                                          <div>
-                                                <label className="text-sm font-semibold text-slate-700 block mb-1.5">
-                                                      Payment Method
-                                                </label>
-                                                <select
-                                                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                                                      value={purchaseForm.paymentMethod}
-                                                      onChange={(event) =>
-                                                            setPurchaseForm({
-                                                                  ...purchaseForm,
-                                                                  paymentMethod: event.target.value as PurchaseMethod,
-                                                            })
-                                                      }
-                                                >
-                                                      {/* <option value="card">Bank Card</option> */}
-                                                      <option value="crypto">Cryptocurrency</option>
-                                                      <option value="onramppay">Bank Card (Onramppay)</option>
-                                                </select>
-                                          </div>
-
-                                          <button
-                                                type="submit"
-                                                disabled={purchaseLoading}
-                                                className="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition-all disabled:opacity-70"
-                                          >
-                                                {purchaseLoading ? 'Creating transaction...' : 'Continue to Payment'}
-                                          </button>
-                                    </form>
-                              </div>
-                        </div>
-                  )}
             </div>
       );
 };

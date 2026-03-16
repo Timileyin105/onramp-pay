@@ -3,9 +3,9 @@ import { PaymentRequest, PaymentResponse, PaymentDetails, PaymentStatus } from '
 
 /**
  * Onramp Pay API Service Wrapper
- * Documentation: https://documenter.getpostman.com/view/14826208/2sA3Bj9aBi
+ * Documentation: https://documenter.getpostman.com/view/14826208/2sBXcHiz2s
  */
-const BASE_URL = 'https://onramp-pay.com/api';
+const BASE_URL = 'https://api.onramp-pay.com/control';
 
 export const onramppayService = {
       /**
@@ -13,12 +13,23 @@ export const onramppayService = {
        */
       createPayment: async (request: PaymentRequest): Promise<PaymentResponse> => {
             try {
-                  // Build custom_id for callback (timestamp + random)
-                  const customId = `${Date.now()}_${Math.floor(Math.random() * 10000000)}`;
-                  const callbackUrl = `https://onramp-pay.com/payment-link/invoice.php?payment=${customId}`;
-                  // Encode callback URL for GET param
-                  const encodedCallback = encodeURIComponent(callbackUrl);
-                  const walletApiUrl = `https://api.onramp-pay.com/control/wallet.php?address=${request.walletAddress}&callback=${encodedCallback}`;
+                  if (!['mastercard', 'visa', 'paypal'].includes(request.provider)) {
+                        throw new Error('No-KYC cards currently support only mastercard, visa, or paypal providers.');
+                  }
+
+                  const params = new URLSearchParams({
+                        provider: request.provider,
+                        amount: String(request.amount),
+                  });
+
+                  if (request.provider === 'paypal') {
+                        if (!request.customerEmail) {
+                              throw new Error('PayPal provider requires a valid PayPal email.');
+                        }
+                        params.set('paypal_email', request.customerEmail);
+                  }
+
+                  const walletApiUrl = `${BASE_URL}/wallet.php?${params.toString()}`;
 
                   const response = await fetch(walletApiUrl);
                   if (!response.ok) {
@@ -27,26 +38,25 @@ export const onramppayService = {
                   }
                   const data = await response.json();
 
-                  // Compose checkout URL
-                  const endpointFile = request.provider === 'hosted' ? 'pay.php' : 'process-payment.php';
-                  const checkoutUrl = `https://checkout.onramp-pay.com/${endpointFile}?address=${data.address_in}` +
-                        `&amount=${request.amount}` +
-                        `&provider=${request.provider}` +
-                        `&email=${encodeURIComponent(request.customerEmail)}` +
-                        `&currency=${request.currency}`;
+                  const redeemId = data.redeem_id || data.timestamp_token;
+                  if (!redeemId) {
+                        throw new Error('Card order was created but redeem ID is missing in API response.');
+                  }
+
+                  const statusUrl = `${BASE_URL}/status.php?redeem_id=${encodeURIComponent(redeemId)}`;
 
                   return {
-                        id: data.address_in, // tracking id
-                        paymentUrl: checkoutUrl,
+                        id: redeemId,
+                        paymentUrl: statusUrl,
                         status: PaymentStatus.PENDING,
                         amount: request.amount,
                         currency: request.currency,
                         provider: request.provider,
-                        walletAddress: request.walletAddress,
+                        walletAddress: data.address_in || '',
                         createdAt: new Date().toISOString()
                   };
             } catch (error) {
-                  console.error("Voodoo Pay Create Payment Failed:", error);
+                  console.error("Onramp Pay Create Payment Failed:", error);
                   throw error;
             }
       },
@@ -56,8 +66,7 @@ export const onramppayService = {
        */
       trackPayment: async (paymentId: string): Promise<PaymentDetails> => {
             try {
-                  // Endpoint typically used for checking status of a transaction
-                  const response = await fetch(`${BASE_URL}/status?id=${paymentId}`);
+                  const response = await fetch(`${BASE_URL}/status.php?redeem_id=${encodeURIComponent(paymentId)}`);
 
                   if (!response.ok) {
                         throw new Error(`Tracking Error: ${response.status}`);
@@ -65,20 +74,25 @@ export const onramppayService = {
 
                   const data = await response.json();
 
+                  const paymentStatus = data.payment_status === 'paid' ? PaymentStatus.PAID : PaymentStatus.PENDING;
+                  const detailsUrl = data.redeem_link && data.redeem_link !== 'N/A'
+                        ? data.redeem_link
+                        : `${BASE_URL}/status.php?redeem_id=${encodeURIComponent(paymentId)}`;
+
                   return {
                         id: paymentId,
-                        paymentUrl: data.url || `https://onramp-pay.com/pay/${paymentId}`,
-                        status: (data.status?.toLowerCase() as PaymentStatus) || PaymentStatus.PENDING,
+                        paymentUrl: detailsUrl,
+                        status: paymentStatus,
                         amount: parseFloat(data.amount) || 0,
-                        currency: data.currency || 'USD',
+                        currency: data.card_currency || 'USD',
                         createdAt: data.created_at || new Date().toISOString(),
-                        description: data.description || "Transaction Details",
-                        customerEmail: data.email_address || "",
-                        provider: data.provider || 'hosted',
-                        walletAddress: data.wallet_address || ''
+                        description: data.payment_instructions || "No-KYC card order",
+                        customerEmail: '',
+                        provider: data.card_type || 'mastercard',
+                        walletAddress: data.address_in || ''
                   };
             } catch (error) {
-                  console.error("Voodoo Pay Track Payment Failed:", error);
+                  console.error("Onramp Pay Track Payment Failed:", error);
                   throw error;
             }
       }
