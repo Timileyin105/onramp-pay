@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import CryptoPaymentPage from '@/components/CryptoPaymentPage';
 import { CryptoPaymentPayload } from '@/types';
@@ -74,7 +74,6 @@ const CryptoPaymentInvoiceRoute: React.FC = () => {
             return () => window.clearTimeout(id);
       }, [error, payload]);
 
-      const showFallback = !initializing && !payload;
 
       return (
             <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 py-12 px-6">
@@ -124,4 +123,17 @@ const CryptoPaymentInvoiceRoute: React.FC = () => {
       );
 };
 
-export default CryptoPaymentInvoiceRoute;
+const SuspenseWrapper: React.FC = () => (
+      <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+                  <div className="text-center space-y-3">
+                        <div className="mx-auto h-12 w-12 rounded-full border-2 border-white/20 border-t-cyan-300 animate-spin" aria-hidden="true" />
+                        <p className="text-sm font-semibold">Loading payment...</p>
+                  </div>
+            </div>
+      }>
+            <CryptoPaymentInvoiceRoute />
+      </Suspense>
+);
+
+export default SuspenseWrapper;
