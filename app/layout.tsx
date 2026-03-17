@@ -43,7 +43,7 @@ export default function RootLayout({
       return (
             <html lang="en">
                   <head>
-                        <link rel="icon" href="/assets/images/onramp-pay.png" type="image/png" />
+                        <link rel="icon" href="/assets/images/onramp-pay-white.png" type="image/png" />
                         <meta name="theme-color" content="#4f46e5" />
                         <meta name="application-name" content="Onramp Pay Link Generator" />
                         <meta name="apple-mobile-web-app-title" content="Onramp Pay" />
@@ -90,56 +90,62 @@ export default function RootLayout({
                               }}
                         />
                   </head>
-                  <body className="min-h-screen bg-slate-50 flex flex-col">
+                  <body className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 flex flex-col">
                         <Header />
-                        <main className="flex-grow">{children}</main>
+                        <main className="flex-grow">
+                              {children}
+                        </main>
                         <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700">
-                              <div className="max-w-7xl mx-auto px-6 py-12">
-                                    {/* Footer Links */}
-                                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-8">
-                                          <Link href="/privacy-policy" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                Privacy Policy
-                                          </Link>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <Link href="/refund-policy" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                Refund Policy
-                                          </Link>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <Link href="/terms-of-use" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                Terms of Use
-                                          </Link>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <Link href="/no-kyc-virtual-credit-card" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                No KYC Cards
-                                          </Link>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <Link href="/virtual-card-policies" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                Card Info & Restrictions
-                                          </Link>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                WooCommerce Plugin
-                                          </a>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                PrestaShop Plugin
-                                          </a>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                OpenCart Plugin
-                                          </a>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <a href="https://documenter.getpostman.com/view/14826208/2sBXcHiz2s" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                API Documentation
-                                          </a>
-                                          <span className="hidden md:inline text-slate-600">•</span>
-                                          <a href="#" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                                Contact Support
-                                          </a>
+                              <div className="max-w-7xl mx-auto px-6 py-12 space-y-10">
+                                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-slate-200">
+                                          <div className="space-y-3">
+                                                <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-slate-100">Product</h4>
+                                                <div className="flex flex-col gap-2 text-sm">
+                                                      <Link href="/payment-generator" className="hover:text-white transition-colors">Payment Generator</Link>
+                                                      <Link href="/crypto-payment" className="hover:text-white transition-colors">Crypto Payment</Link>
+                                                      <Link href="/no-kyc-virtual-credit-card" className="hover:text-white transition-colors">No KYC Cards</Link>
+                                                      <Link href="/track-payment" className="hover:text-white transition-colors">Track Payment</Link>
+                                                      <Link href="/minimum-amounts" className="hover:text-white transition-colors">Status & Limits</Link>
+                                                </div>
+                                          </div>
+
+                                          <div className="space-y-3">
+                                                <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-slate-100">Company</h4>
+                                                <div className="flex flex-col gap-2 text-sm">
+                                                      <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WooCommerce Plugin</a>
+                                                      <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">PrestaShop Plugin</a>
+                                                      <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">OpenCart Plugin</a>
+                                                      <a href="https://documenter.getpostman.com/view/14826208/2sBXcHiz2s" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">API Documentation</a>
+                                                      <a href="mailto:support@onramp-pay.com" className="hover:text-white transition-colors">Contact Support</a>
+                                                      <a href="mailto:support@onramp-pay.com" className="hover:text-white transition-colors">support@onramp-pay.com</a>
+                                                </div>
+                                          </div>
+
+                                          <div className="space-y-3">
+                                                <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-slate-100">Legal</h4>
+                                                <div className="flex flex-col gap-2 text-sm">
+                                                      <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                                                      <Link href="/legal-enquiries" className="hover:text-white transition-colors">Legal Enquiries</Link>
+                                                      <Link href="/prohibited-businesses" className="hover:text-white transition-colors">Prohibited Businesses</Link>
+                                                      <Link href="/terms-of-use" className="hover:text-white transition-colors">Terms of Use</Link>
+                                                      <Link href="/virtual-card-policies" className="hover:text-white transition-colors">Card Info & Restrictions</Link>
+                                                </div>
+                                          </div>
+
+                                          <div className="space-y-3">
+                                                <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-slate-100">Resources</h4>
+                                                <div className="flex flex-col gap-2 text-sm">
+                                                      <Link href="/minimum-amounts" className="hover:text-white transition-colors">Minimum Amounts</Link>
+                                                      <Link href="/track-payment" className="hover:text-white transition-colors">Redeem Status</Link>
+                                                      <Link href="/crypto-payment" className="hover:text-white transition-colors">Crypto QR Checkout</Link>
+                                                      <Link href="/payment-generator" className="hover:text-white transition-colors">Invoice Links</Link>
+                                                      <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
+                                                </div>
+                                          </div>
                                     </div>
 
                                     {/* Legal Disclaimer */}
-                                    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 mb-8">
+                                    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8">
                                           <div className="flex items-start gap-3 mb-4">
                                                 <span className="text-yellow-500 text-xl flex-shrink-0">⚠️</span>
                                                 <h3 className="text-sm font-bold text-yellow-500 uppercase tracking-wider">Important Legal Notice</h3>
@@ -150,9 +156,12 @@ export default function RootLayout({
                                     </div>
 
                                     {/* Copyright */}
-                                    <div className="text-center pt-6 border-t border-slate-700">
+                                    <div className="text-center pt-6 border-t border-slate-700 space-y-2">
                                           <p className="text-sm text-slate-400">
                                                 Copyright © 2026 Onramp Pay. All Rights Reserved.
+                                          </p>
+                                          <p className="text-sm text-slate-400">
+                                                A product of <a href="https://exquisitedev.com" className="text-cyan-200 hover:text-white font-semibold" target="_blank" rel="noopener noreferrer">ExquisiteDev Technologies</a>.
                                           </p>
                                     </div>
                               </div>

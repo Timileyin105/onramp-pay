@@ -3,21 +3,27 @@ import Link from 'next/link';
 
 const RefundPolicyPage: React.FC = () => {
       return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
-                  <div className="max-w-4xl mx-auto">
-                        <div className="bg-white/90 backdrop-blur rounded-3xl border border-slate-200/80 shadow-xl p-8 md:p-12">
-                              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 text-center">
-                                    Refund Policy
+            <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 py-12 px-6">
+                  <div className="pointer-events-none absolute inset-0">
+                        <div className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/30 via-cyan-400/25 to-pink-500/20 blur-3xl" />
+                        <div className="absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full bg-gradient-to-br from-pink-500/25 via-purple-500/20 to-indigo-500/25 blur-3xl" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(99,102,241,0.1),transparent_30%),radial-gradient(circle_at_50%_70%,rgba(56,189,248,0.1),transparent_35%)]" />
+                  </div>
+
+                  <div className="relative max-w-4xl mx-auto">
+                        <div className="bg-slate-900/70 backdrop-blur-xl rounded-3xl border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.35)] p-8 md:p-12 text-slate-100 [&_.text-slate-700]:text-slate-200 [&_.text-slate-900]:text-white [&_.text-slate-800]:text-slate-100 [&_.text-slate-600]:text-slate-300 [&_.text-slate-500]:text-slate-300 [&_.text-blue-900]:text-white [&_.text-blue-800]:text-cyan-100 [&_.text-indigo-900]:text-white [&_.text-indigo-700]:text-cyan-100">
+                              <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-center">
+                                    <span className="bg-gradient-to-r from-cyan-200 via-indigo-200 to-pink-200 bg-clip-text text-transparent">Refund Policy</span>
                               </h1>
 
-                              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r-xl">
-                                    <h2 className="text-xl font-bold text-blue-900 mb-3">ℹ️ Important Notice</h2>
-                                    <p className="text-blue-800 text-sm leading-relaxed">
+                              <div className="bg-white/5 border border-white/10 p-6 mb-8 rounded-2xl">
+                                    <h2 className="text-xl font-bold text-white mb-3">ℹ️ Important Notice</h2>
+                                    <p className="text-slate-200 text-sm leading-relaxed">
                                           All plugin sales are final. We encourage you to test our payment link generator before purchasing to ensure our service meets your needs.
                                     </p>
                               </div>
 
-                              <div className="prose prose-slate max-w-none space-y-8">
+                              <div className="prose prose-invert max-w-none space-y-8">
                                     <section>
                                           <h2 className="text-2xl font-bold text-slate-900 mb-4">No Refund Policy</h2>
                                           <p className="text-slate-700 leading-relaxed mb-4">

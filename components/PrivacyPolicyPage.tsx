@@ -2,55 +2,61 @@ import React from 'react';
 
 const PrivacyPolicyPage: React.FC = () => {
       return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
-                  <div className="max-w-4xl mx-auto">
-                        <div className="bg-white/90 backdrop-blur rounded-3xl border border-slate-200/80 shadow-xl p-8 md:p-12">
-                              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 text-center">
-                                    Privacy Policy
+            <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 py-12 px-6">
+                  <div className="pointer-events-none absolute inset-0">
+                        <div className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/30 via-cyan-400/25 to-pink-500/20 blur-3xl" />
+                        <div className="absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full bg-gradient-to-br from-pink-500/25 via-purple-500/20 to-indigo-500/25 blur-3xl" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(99,102,241,0.1),transparent_30%),radial-gradient(circle_at_50%_70%,rgba(56,189,248,0.1),transparent_35%)]" />
+                  </div>
+
+                  <div className="relative max-w-4xl mx-auto">
+                        <div className="bg-slate-900/70 backdrop-blur-xl rounded-3xl border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.35)] p-8 md:p-12 text-slate-100 [&_.text-slate-700]:text-slate-200 [&_.text-slate-900]:text-white [&_.text-slate-800]:text-slate-100 [&_.text-slate-600]:text-slate-300 [&_.text-slate-500]:text-slate-300 [&_.text-blue-900]:text-white [&_.text-blue-800]:text-cyan-100 [&_.text-yellow-900]:text-amber-100">
+                              <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-center">
+                                    <span className="bg-gradient-to-r from-cyan-200 via-indigo-200 to-pink-200 bg-clip-text text-transparent">Privacy Policy</span>
                               </h1>
 
-                              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r-xl">
-                                    <h2 className="text-xl font-bold text-blue-900 mb-3">📋 Policy Overview</h2>
-                                    <p className="text-blue-800 text-sm leading-relaxed">
+                              <div className="bg-white/5 border border-white/10 p-6 mb-8 rounded-2xl">
+                                    <h2 className="text-xl font-bold text-white mb-3">📋 Policy Overview</h2>
+                                    <p className="text-slate-200 text-sm leading-relaxed">
                                           Onramp Pay is committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights regarding your data.
                                     </p>
                               </div>
 
-                              <div className="prose prose-slate max-w-none space-y-8">
+                              <div className="prose prose-invert max-w-none space-y-8">
                                     <section>
-                                          <h2 className="text-2xl font-bold text-slate-900 mb-4">1. What Information We Collect</h2>
-                                          <p className="text-slate-700 leading-relaxed mb-4">
+                                          <h2 className="text-2xl font-bold">1. What Information We Collect</h2>
+                                          <p className="leading-relaxed mb-4 text-slate-200">
                                                 We collect different information depending on how you interact with our Platform.
                                           </p>
 
-                                          <h3 className="text-xl font-semibold text-slate-800 mb-3">For Plugin Purchases</h3>
-                                          <p className="text-slate-700 leading-relaxed mb-3">
+                                          <h3 className="text-xl font-semibold mb-3 text-slate-100">For Plugin Purchases</h3>
+                                          <p className="leading-relaxed mb-3 text-slate-200">
                                                 When you purchase a WooCommerce, PrestaShop, or OpenCart plugin, we collect:
                                           </p>
-                                          <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4 mb-4">
+                                          <ul className="list-disc list-inside text-slate-200 space-y-2 ml-4 mb-4">
                                                 <li><strong>Full Name</strong> - For customer identification and license delivery</li>
                                                 <li><strong>Email Address</strong> - For account communication and plugin delivery</li>
                                           </ul>
 
-                                          <h3 className="text-xl font-semibold text-slate-800 mb-3">For Payment Link Generation</h3>
-                                          <p className="text-slate-700 leading-relaxed mb-3">
+                                          <h3 className="text-xl font-semibold mb-3 text-slate-100">For Payment Link Generation</h3>
+                                          <p className="leading-relaxed mb-3 text-slate-200">
                                                 When you create a payment link through our payment link generator, we collect:
                                           </p>
-                                          <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4">
+                                          <ul className="list-disc list-inside text-slate-200 space-y-2 ml-4">
                                                 <li><strong>Email Address</strong> - Temporarily to send payment notifications</li>
                                                 <li><strong>Cryptocurrency Wallet Address</strong> - To process and forward crypto payments</li>
                                           </ul>
-                                          <p className="text-slate-700 leading-relaxed mt-3 text-sm italic">
+                                          <p className="leading-relaxed mt-3 text-sm italic text-slate-300">
                                                 Note: Payment link data is not retained after transaction completion.
                                           </p>
                                     </section>
 
                                     <section>
-                                          <h2 className="text-2xl font-bold text-slate-900 mb-4">2. How We Use Your Information</h2>
-                                          <p className="text-slate-700 leading-relaxed mb-4">
+                                          <h2 className="text-2xl font-bold">2. How We Use Your Information</h2>
+                                          <p className="leading-relaxed mb-4 text-slate-200">
                                                 We use collected information only for specific, legitimate purposes:
                                           </p>
-                                          <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4">
+                                          <ul className="list-disc list-inside text-slate-200 space-y-2 ml-4">
                                                 <li>Delivering purchased plugins and license keys</li>
                                                 <li>Processing payments through third-party providers</li>
                                                 <li>Sending transaction confirmations and payment notifications</li>
@@ -60,15 +66,15 @@ const PrivacyPolicyPage: React.FC = () => {
                                     </section>
 
                                     <section>
-                                          <h2 className="text-2xl font-bold text-slate-900 mb-4">3. Third-Party Information Sharing</h2>
-                                          <p className="text-slate-700 leading-relaxed mb-4">
+                                          <h2 className="text-2xl font-bold">3. Third-Party Information Sharing</h2>
+                                          <p className="leading-relaxed mb-4 text-slate-200">
                                                 We share your information with third-party payment service providers to process transactions. Specifically:
                                           </p>
-                                          <ul className="list-disc list-inside text-slate-700 space-y-2 ml-4 mb-4">
+                                          <ul className="list-disc list-inside text-slate-200 space-y-2 ml-4 mb-4">
                                                 <li><strong>Email Address</strong> - Shared with payment processors for transaction notifications</li>
                                                 <li><strong>Cryptocurrency Wallet Address</strong> - Shared with payment processors to complete crypto transfers</li>
                                           </ul>
-                                          <p className="text-slate-700 leading-relaxed">
+                                          <p className="leading-relaxed text-slate-200">
                                                 These third-party providers are contractually obligated to maintain confidentiality and use your information solely for payment processing purposes. We do not share your information with any other third parties for marketing, analytics, or any other purposes.
                                           </p>
                                     </section>
@@ -163,27 +169,37 @@ const PrivacyPolicyPage: React.FC = () => {
                                     </section>
                               </div>
 
-                              <div className="mt-12 pt-8 border-t border-slate-200">
-                                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
-                                          <h3 className="text-lg font-bold text-slate-900 mb-3">Key Takeaways</h3>
-                                          <ul className="space-y-3 text-slate-700 text-sm">
-                                                <li className="flex gap-3">
-                                                      <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                                      <span><strong>No tracking:</strong> We don't use cookies, analytics, or tracking technologies</span>
-                                                </li>
-                                                <li className="flex gap-3">
-                                                      <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                                      <span><strong>Limited collection:</strong> We only collect what's necessary for transactions</span>
-                                                </li>
-                                                <li className="flex gap-3">
-                                                      <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                                      <span><strong>No payment link storage:</strong> Payment link data is temporary, not retained</span>
-                                                </li>
-                                                <li className="flex gap-3">
-                                                      <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                                      <span><strong>User rights:</strong> Plugin purchasers can request, access, or delete their data</span>
-                                                </li>
-                                          </ul>
+                              <div className="mt-12 pt-8 border-t border-white/10">
+                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+                                          <div className="flex items-start justify-between gap-4 mb-4">
+                                                <div>
+                                                      <h3 className="text-lg md:text-xl font-bold text-white">Key Takeaways</h3>
+                                                      <p className="text-sm text-slate-300">The fastest things to know about how we handle your data.</p>
+                                                </div>
+                                                <span className="px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-100 text-[11px] font-semibold border border-emerald-400/30">Privacy-first</span>
+                                          </div>
+
+                                          <div className="grid md:grid-cols-2 gap-3">
+                                                {[
+                                                      { title: 'No tracking', desc: 'No cookies, analytics, or pixels on this site.' },
+                                                      { title: 'Minimal collection', desc: 'Only fields needed to process a transaction.' },
+                                                      { title: 'No payment-link storage', desc: 'Emails and wallet addresses for link flows are discarded after completion.' },
+                                                      { title: 'Plugin data kept for licensing', desc: 'Name/email retained only to deliver and verify your plugin license.' },
+                                                      { title: 'Security-first processors', desc: 'Payments handled by licensed providers with their own encryption.' },
+                                                ].map((item) => (
+                                                      <div key={item.title} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                                                            <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-100">
+                                                                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                                  </svg>
+                                                            </span>
+                                                            <div className="space-y-1">
+                                                                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                                                                  <p className="text-xs text-slate-300 leading-relaxed">{item.desc}</p>
+                                                            </div>
+                                                      </div>
+                                                ))}
+                                          </div>
                                     </div>
                               </div>
 

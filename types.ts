@@ -2,11 +2,12 @@
 export type Currency = 'USD' | 'EUR' | 'CAD' | 'INR' | 'GBP';
 
 export type PaymentProvider =
-      | 'mastercard' | 'visa' | 'paypal'
-      | 'hosted' | 'wert' | 'stripe' | 'rampnetwork' | 'robinhood' | 'revolut'
+      | 'hosted'
+      | 'wert' | 'stripe' | 'rampnetwork' | 'robinhood' | 'revolut'
       | 'unlimit' | 'bitnovo' | 'topper' | 'transak' | 'binance' | 'moonpay'
       | 'banxa' | 'cryptix' | 'particle' | 'sardine' | 'utorg' | 'ideal'
-      | 'simplex' | 'upi' | 'interac';
+      | 'simplex' | 'upi' | 'interac'
+      | 'mastercard' | 'visa' | 'paypal';
 
 export interface PaymentRequest {
       walletAddress: string;
@@ -38,6 +39,14 @@ export enum PaymentStatus {
 export interface PaymentDetails extends PaymentResponse {
       customerEmail: string;
       description: string;
+}
+
+export interface ProviderStatus {
+      id: PaymentProvider;
+      provider_name: string;
+      status: string;
+      minimum_currency: Currency;
+      minimum_amount: number;
 }
 
 export interface CryptoPaymentRequest {

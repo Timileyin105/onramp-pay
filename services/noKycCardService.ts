@@ -27,7 +27,7 @@ export interface NoKycCardStatusResponse {
       redeem_link: string;
 }
 
-const CARD_API_BASE_URL = process.env.NEXT_PUBLIC_CARD_API_BASE_URL || 'https://api.onramp-pay.com/control';
+const CARD_API_BASE_URL = process.env.NEXT_PUBLIC_CARD_API_BASE_URL || 'https://api.onramp-pay.com/crypto/cards';
 
 export const noKycCardService = {
       createCard: async (payload: CreateNoKycCardRequest): Promise<CreateNoKycCardResponse> => {
@@ -44,12 +44,29 @@ export const noKycCardService = {
             }
 
             const response = await fetch(`${CARD_API_BASE_URL}/wallet.php?${params.toString()}`);
-            if (!response.ok) {
-                  const errorData = await response.json().catch(() => ({}));
-                  throw new Error(errorData.message || `Create card failed (${response.status})`);
+            const rawBody = await response.text();
+
+            if (rawBody.toLowerCase().includes('out of stock')) {
+                  // Provider can return plain-text out-of-stock instead of JSON
+                  throw new Error('This card is currently out of stock. Please try another provider or amount.');
             }
 
-            const data = (await response.json()) as CreateNoKycCardResponse;
+            if (!response.ok) {
+                  let errorData: Record<string, unknown> = {};
+                  try {
+                        errorData = JSON.parse(rawBody || '{}');
+                  } catch (_err) {
+                        errorData = {};
+                  }
+                  throw new Error((errorData as { message?: string }).message || `Create card failed (${response.status})`);
+            }
+
+            let data: CreateNoKycCardResponse;
+            try {
+                  data = JSON.parse(rawBody) as CreateNoKycCardResponse;
+            } catch (_err) {
+                  throw new Error('Invalid API response: expected JSON payload.');
+            }
             if (!data.redeem_id) {
                   throw new Error('Invalid API response: missing redeem_id.');
             }

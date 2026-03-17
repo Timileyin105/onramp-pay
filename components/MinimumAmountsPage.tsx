@@ -2,162 +2,87 @@ import React from 'react';
 
 const MinimumAmountsPage: React.FC = () => {
       return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-cyan-50 py-12 px-6">
-                  <div className="max-w-5xl mx-auto">
-                        <div className="text-center mb-12">
-                              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                                    Minimum Order Amounts
+            <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 py-12 px-6">
+                  <div className="pointer-events-none absolute inset-0">
+                        <div className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/30 via-cyan-400/25 to-pink-500/20 blur-3xl" />
+                        <div className="absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full bg-gradient-to-br from-pink-500/25 via-purple-500/20 to-indigo-500/25 blur-3xl" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(99,102,241,0.1),transparent_30%),radial-gradient(circle_at_50%_70%,rgba(56,189,248,0.1),transparent_35%)]" />
+                  </div>
+
+                  <div className="relative max-w-5xl mx-auto">
+                        <div className="text-center mb-12 space-y-3">
+                              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-cyan-100 shadow-[0_10px_40px_rgba(59,130,246,0.35)] backdrop-blur">
+                                    <span className="inline-flex h-2 w-2 rounded-full bg-emerald-300 animate-pulse" />
+                                    Provider minimums live
+                              </div>
+                              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+                                    <span className="bg-gradient-to-r from-cyan-200 via-indigo-200 to-pink-200 bg-clip-text text-transparent">Minimum Order Amounts</span>
                               </h1>
-                              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                              <p className="text-lg text-slate-200/80 max-w-2xl mx-auto">
                                     Each payment provider has different minimum order requirements. Choose the provider that best fits your transaction sizes.
                               </p>
                         </div>
 
-                        <div className="bg-white/90 backdrop-blur p-8 rounded-3xl border border-slate-200/80 shadow-xl">
+                        <div className="bg-slate-900/70 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
                               <div className="overflow-x-auto">
                                     <table className="min-w-full text-sm bg-transparent">
                                           <thead>
-                                                <tr className="bg-gradient-to-r from-indigo-600 to-cyan-600 text-white">
+                                                <tr className="bg-gradient-to-r from-cyan-500 via-indigo-500 to-pink-500 text-white">
                                                       <th className="py-4 px-6 text-left font-bold rounded-tl-xl">Payment Provider</th>
                                                       <th className="py-4 px-6 text-center font-bold">Minimum Order Amount</th>
                                                       <th className="py-4 px-6 text-center font-bold rounded-tr-xl">Status</th>
                                                 </tr>
                                           </thead>
-                                          <tbody className="divide-y divide-slate-200">
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Wert.io</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$1</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Stripe (USA)</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$2</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Coinbase Pay</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$2</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">⚠️ Unstable</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">ramp.network</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$4</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Robinhood (USA)</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$5</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Revolut (EU/EEA)</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">€6</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Unlimit</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$10</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Bitnovo</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$10</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Kryptonim</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$10</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">⚠️ Unstable</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Topper</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$10</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Transak</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$15</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Binance Connect</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$15</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Alchemy Pay</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$15</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">⚠️ Unstable</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">MoonPay</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$20</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Banxa</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$20</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Guardarian</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$21</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">⚠️ Unstable</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Cryptix</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$20</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">particle.network</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$30</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">mercuryo.io</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$30</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">⚠️ Unstable</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Sardine.ai</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$30</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">UTORG</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$50</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">iDEAL (NL)</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">€46</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Simplex</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">$50</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">UPI/IMPS</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">₹1600</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
-                                                <tr className="hover:bg-slate-50 transition-colors">
-                                                      <td className="py-4 px-6 font-medium text-slate-900">Interac</td>
-                                                      <td className="py-4 px-6 text-center text-slate-700">CA$100</td>
-                                                      <td className="py-4 px-6 text-center"><span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span></td>
-                                                </tr>
+                                          <tbody className="divide-y divide-white/5">
+                                                {[{ name: 'Wert.io', min: '$1', status: 'Active', tone: 'green' },
+                                                { name: 'Stripe (USA)', min: '$2', status: 'Active', tone: 'green' },
+                                                { name: 'Coinbase Pay', min: '$2', status: '⚠️ Unstable', tone: 'yellow' },
+                                                { name: 'ramp.network', min: '$4', status: 'Active', tone: 'green' },
+                                                { name: 'Robinhood (USA)', min: '$5', status: 'Active', tone: 'green' },
+                                                { name: 'Revolut (EU/EEA)', min: '€6', status: 'Active', tone: 'green' },
+                                                { name: 'Unlimit', min: '$10', status: 'Active', tone: 'green' },
+                                                { name: 'Bitnovo', min: '$10', status: 'Active', tone: 'green' },
+                                                { name: 'Kryptonim', min: '$10', status: '⚠️ Unstable', tone: 'yellow' },
+                                                { name: 'Topper', min: '$10', status: 'Active', tone: 'green' },
+                                                { name: 'Transak', min: '$15', status: 'Active', tone: 'green' },
+                                                { name: 'Binance Connect', min: '$15', status: 'Active', tone: 'green' },
+                                                { name: 'Alchemy Pay', min: '$15', status: '⚠️ Unstable', tone: 'yellow' },
+                                                { name: 'MoonPay', min: '$20', status: 'Active', tone: 'green' },
+                                                { name: 'Banxa', min: '$20', status: 'Active', tone: 'green' },
+                                                { name: 'Guardarian', min: '$21', status: '⚠️ Unstable', tone: 'yellow' },
+                                                { name: 'Cryptix', min: '$20', status: 'Active', tone: 'green' },
+                                                { name: 'particle.network', min: '$30', status: 'Active', tone: 'green' },
+                                                { name: 'mercuryo.io', min: '$30', status: '⚠️ Unstable', tone: 'yellow' },
+                                                { name: 'Sardine.ai', min: '$30', status: 'Active', tone: 'green' },
+                                                { name: 'UTORG', min: '$50', status: 'Active', tone: 'green' },
+                                                { name: 'iDEAL (NL)', min: '€46', status: 'Active', tone: 'green' },
+                                                { name: 'Simplex', min: '$50', status: 'Active', tone: 'green' },
+                                                { name: 'UPI/IMPS', min: '₹1600', status: 'Active', tone: 'green' },
+                                                { name: 'Interac', min: 'CA$100', status: 'Active', tone: 'green' }].map((row) => (
+                                                      <tr key={row.name} className="bg-white/5 hover:bg-white/8 transition-colors">
+                                                            <td className="py-4 px-6 font-medium text-slate-50">{row.name}</td>
+                                                            <td className="py-4 px-6 text-center text-slate-100">{row.min}</td>
+                                                            <td className="py-4 px-6 text-center">
+                                                                  <span
+                                                                        className={`px-3 py-1 rounded-full text-xs font-semibold ${row.tone === 'green'
+                                                                                    ? 'bg-emerald-500/20 text-emerald-100 border border-emerald-400/40'
+                                                                                    : 'bg-amber-500/20 text-amber-100 border border-amber-400/40'
+                                                                              }`}
+                                                                  >
+                                                                        {row.status}
+                                                                  </span>
+                                                            </td>
+                                                      </tr>
+                                                ))}
                                           </tbody>
                                     </table>
                               </div>
 
-                              <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-xl space-y-3 text-sm text-slate-700">
-                                    <div>💡 <span className="text-red-600 font-medium">Payouts may be sent in ETH, USDC, USDT (Polygon/BEP-20), or POL native token. Use a self-custodial wallet to receive payouts.</span></div>
-                                    <div>⚠️ <span className="font-medium">Providers marked as "Unstable" are experiencing issues or under maintenance. We recommend avoiding these temporarily.</span></div>
-                                    <div>📌 <span className="font-medium">UK Customers:</span> Due to UK 🇬🇧 FCA regulations, some providers enforce a 24-hour cooling-off period. <strong>Enable Revolut</strong> to allow UK customers to purchase without waiting.</div>
-                                    <div>🌍 <span className="font-medium">Multi-Hosted Provider:</span> Select "Multi Hosted Providers" to offer customers a choice of multiple providers in one checkout flow.</div>
+                              <div className="mt-8 p-6 bg-white/5 border border-white/10 rounded-xl space-y-3 text-sm text-slate-100">
+                                    <div>💡 <span className="text-amber-100 font-medium">Payouts may be sent in ETH, USDC, USDT (Polygon/BEP-20), or POL native token. Use a self-custodial wallet to receive payouts.</span></div>
+                                    <div>⚠️ <span className="font-medium text-amber-100">Providers marked as "Unstable" are experiencing issues or under maintenance. We recommend avoiding these temporarily.</span></div>
+                                    <div>📌 <span className="font-medium text-slate-100">UK Customers:</span> Due to UK FCA regulations, some providers enforce a 24-hour cooling-off period. <strong>Enable Revolut</strong> to allow UK customers to purchase without waiting.</div>
+                                    <div>🌍 <span className="font-medium text-slate-100">Multi-Hosted Provider:</span> Select "Multi Hosted Providers" to offer customers a choice of multiple providers in one checkout flow.</div>
                               </div>
                         </div>
                   </div>

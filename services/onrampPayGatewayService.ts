@@ -1,6 +1,15 @@
-import { CryptoPaymentRequest, CryptoPaymentResponse } from '../types';
+import {
+      CryptoPaymentRequest,
+      CryptoPaymentResponse,
+      PaymentRequest,
+      PaymentResponse,
+      PaymentStatus,
+      ProviderStatus,
+} from '../types';
 
 const CRYPTO_API_BASE = 'https://api.onramp-pay.com/crypto';
+const CONTROL_API_BASE = 'https://api.onramp-pay.com/control';
+const ONRAMP_ROOT_BASE = 'https://onramp-pay.com';
 
 const getCryptoPath = (cryptoCurrency: string): string => {
       return cryptoCurrency
@@ -22,7 +31,70 @@ const assertClient = () => {
       }
 };
 
-export const paygateService = {
+export const onrampPayGatewayService = {
+      /**
+       * Fetch card-to-crypto providers and their minimums/status.
+       */
+      fetchProviders: async (): Promise<ProviderStatus[]> => {
+            const response = await fetch(`${CONTROL_API_BASE}/provider-status/`);
+
+            if (!response.ok) {
+                  throw new Error(`Provider status error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            if (!data?.providers || !Array.isArray(data.providers)) {
+                  throw new Error('Provider status response malformed.');
+            }
+
+            return data.providers
+                  .filter((p: ProviderStatus) => p.status === 'active')
+                  .map((p: ProviderStatus) => ({ ...p }));
+      },
+
+      /**
+       * Generates a card-to-crypto payment link using the hosted/partner checkout flow.
+       */
+      createPayment: async (request: PaymentRequest): Promise<PaymentResponse> => {
+            try {
+                  const customId = `${Date.now()}_${Math.floor(Math.random() * 10000000)}`;
+                  const callbackUrl = `${ONRAMP_ROOT_BASE}/payment-link/invoice.php?payment=${customId}`;
+                  const walletApiUrl = `${CONTROL_API_BASE}/wallet.php?address=${encodeURIComponent(request.walletAddress)}&callback=${encodeURIComponent(callbackUrl)}`;
+
+                  const walletResponse = await fetch(walletApiUrl);
+                  if (!walletResponse.ok) {
+                        const errorData = await walletResponse.json().catch(() => ({}));
+                        throw new Error(errorData.message || `API Error: ${walletResponse.status}`);
+                  }
+
+                  const walletData = await walletResponse.json();
+                  if (!walletData.address_in) {
+                        throw new Error(walletData.message || 'Failed to create payment wallet.');
+                  }
+
+                  const endpointFile = request.provider === 'hosted' ? 'pay.php' : 'process-payment.php';
+                  const checkoutUrl = `${CONTROL_API_BASE}/${endpointFile}?address=${walletData.address_in}`
+                        + `&amount=${request.amount}`
+                        + `&provider=${request.provider}`
+                        + `&email=${encodeURIComponent(request.customerEmail)}`
+                        + `&currency=${request.currency}`;
+
+                  return {
+                        id: walletData.address_in,
+                        paymentUrl: checkoutUrl,
+                        status: PaymentStatus.PENDING,
+                        amount: request.amount,
+                        currency: request.currency,
+                        provider: request.provider,
+                        walletAddress: request.walletAddress,
+                        createdAt: new Date().toISOString(),
+                  };
+            } catch (error) {
+                  console.error('Onramp Pay payment creation failed:', error);
+                  throw error;
+            }
+      },
+
       createCryptoPayment: async (request: CryptoPaymentRequest): Promise<CryptoPaymentResponse> => {
             assertClient();
 
@@ -41,7 +113,7 @@ export const paygateService = {
                   }
 
                   const customId = `${Date.now()}_${Math.floor(Math.random() * 10000000)}`;
-                  const callbackUrl = `https://onramp-pay.com/payment-link/invoice.php?payment=${customId}`;
+                  const callbackUrl = `${ONRAMP_ROOT_BASE}/payment-link/invoice.php?payment=${customId}`;
                   const walletUrl = `${CRYPTO_API_BASE}/${cryptoPath}/wallet.php?address=${encodeURIComponent(request.payoutAddress)}&callback=${encodeURIComponent(callbackUrl)}`;
                   const walletResponse = await fetch(walletUrl);
 
@@ -64,7 +136,7 @@ export const paygateService = {
                   };
 
                   const encodedPayload = encodeBase64(JSON.stringify(payload));
-                  const paymentUrl = `${window.location.origin}${window.location.pathname}?cryptoPayment=${encodeURIComponent(encodedPayload)}`;
+                  const paymentUrl = `${window.location.origin}/crypto-payment/pay?cryptoPayment=${encodeURIComponent(encodedPayload)}`;
 
                   return {
                         id: walletData.address_in,
@@ -79,7 +151,7 @@ export const paygateService = {
                         createdAt: new Date().toISOString(),
                   };
             } catch (error) {
-                  console.error('Crypto payment creation failed:', error);
+                  console.error('Onramp Pay crypto payment creation failed:', error);
                   throw error;
             }
       },
@@ -101,7 +173,7 @@ export const paygateService = {
 
                   return String(qrData.qr_code);
             } catch (error) {
-                  console.error('QR generation failed:', error);
+                  console.error('Onramp Pay QR generation failed:', error);
                   throw error;
             }
       },
