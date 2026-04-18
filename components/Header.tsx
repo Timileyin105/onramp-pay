@@ -18,6 +18,7 @@ const Header: React.FC = () => {
 
       const navLinks = [
             { path: '/', label: 'Home' },
+            { path: '/payment-generator', label: 'Card To Crypto Payment' },
       ];
 
       const productLinks = [

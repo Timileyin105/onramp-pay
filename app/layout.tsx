@@ -4,16 +4,16 @@ import './globals.css';
 import Header from '@/components/Header';
 
 export const metadata: Metadata = {
-      title: 'Onramp Pay - WooCommerce Crypto Payment Plugin',
+      title: 'Onramp Pay – Card-to-Crypto Payments, Crypto Cards, Exchange & WooCommerce Plugin',
       description:
-            'Accept crypto payments on WooCommerce. Free payment plugin for card-to-crypto checkout with 20+ providers. Free payment link generator included.',
+            'Onramp Pay lets merchants create card-to-crypto payments, issue crypto cards, exchange crypto, generate invoicing links, and accept fiat-to-crypto checkout across 20+ providers. Supports WooCommerce plugin integration and direct merchant/freelancer checkout on our site.',
       keywords:
-            'WooCommerce crypto payment, woocommerce bitcoin, card to crypto, buy crypto with card, crypto payments, onramp, fiat to crypto, crypto checkout, payment links, crypto onramp, woocommerce payment gateway',
+            'WooCommerce crypto plugin, card to crypto, crypto cards, crypto exchange, fiat to crypto, buy crypto with card, crypto payments, crypto payment links, prepaid crypto card, stablecoin payouts, onramp payments, digital asset checkout, merchant crypto payments, freelancer crypto checkout',
       robots: 'index, follow',
       openGraph: {
-            title: 'Onramp Pay - WooCommerce Crypto Payment Plugin',
+            title: 'Onramp Pay – Card-to-Crypto Payments, Crypto Cards & Exchange',
             description:
-                  'Accept crypto payments on WooCommerce with 20+ payment providers. Free plugin with card-to-crypto checkout.',
+                  'Create card-to-crypto payments, issue crypto cards, exchange digital assets, and generate crypto payment links with Onramp Pay. Supports WooCommerce plugin installs and direct merchant/freelancer use.',
             type: 'website',
             url: 'https://onramp-pay.com',
             siteName: 'Onramp Pay',
@@ -22,15 +22,15 @@ export const metadata: Metadata = {
                         url: 'https://onramp-pay.com/assets/images/onramp-pay.png',
                         width: 1200,
                         height: 630,
-                        alt: 'Onramp Pay WooCommerce Plugin',
+                        alt: 'Onramp Pay Card-to-Crypto Platform',
                   },
             ],
       },
       twitter: {
             card: 'summary_large_image',
-            title: 'Onramp Pay - WooCommerce Crypto Payment Plugin',
+            title: 'Onramp Pay – Card-to-Crypto Payments, Crypto Cards & Exchange',
             description:
-                  'Accept crypto payments on WooCommerce with 20+ payment providers. Free plugin with card-to-crypto checkout.',
+                  'Create card-to-crypto payments, issue crypto cards, exchange crypto, and generate payment links with Onramp Pay. Supports WooCommerce plugin installs and direct merchant/freelancer use.',
             images: ['https://onramp-pay.com/assets/images/onramp-pay.png'],
       },
 };
@@ -58,9 +58,9 @@ export default function RootLayout({
                                     __html: JSON.stringify({
                                           '@context': 'https://schema.org',
                                           '@type': 'SoftwareApplication',
-                                          name: 'Onramp Pay - WooCommerce, PrestaShop & OpenCart Payment Plugin',
+                                          name: 'Onramp Pay – Card-to-Crypto Payments, Crypto Cards & Crypto Exchange Platform',
                                           description:
-                                                'Accept crypto payments on WooCommerce, PrestaShop, and OpenCart with card-to-crypto checkout. 20+ payment providers including Stripe, MoonPay, Wert.io, and Revolut. Instant USDC payouts, no KYC required.',
+                                                'Onramp Pay enables merchants to create card-to-crypto payments, mint crypto cards, exchange digital assets, and generate payment links with 20+ providers. Supports WooCommerce plugin integration as well as direct merchant and freelancer checkout workflows.',
                                           url: 'https://onramp-pay.com',
                                           applicationCategory: 'BusinessApplication',
                                           operatingSystem: 'Web',
@@ -77,7 +77,7 @@ export default function RootLayout({
                                                 'Instant USDC payouts',
                                                 'No KYC required for sellers',
                                                 'Zero chargebacks',
-                                                'WooCommerce, PrestaShop, OpenCart support',
+                                                'WooCommerce plugin support and direct checkout on our site',
                                                 'Lifetime updates',
                                                 'Free plugin download',
                                           ],
