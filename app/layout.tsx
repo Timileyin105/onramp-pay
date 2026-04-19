@@ -8,18 +8,18 @@ export const metadata: Metadata = {
       description:
             'Onramp Pay lets merchants create card-to-crypto payments, issue crypto cards, exchange crypto, generate invoicing links, and accept fiat-to-crypto checkout across 20+ providers. Supports WooCommerce plugin integration and direct merchant/freelancer checkout on our site.',
       keywords:
-            'WooCommerce crypto plugin, card to crypto, crypto cards, crypto exchange, fiat to crypto, buy crypto with card, crypto payments, crypto payment links, prepaid crypto card, stablecoin payouts, onramp payments, digital asset checkout, merchant crypto payments, freelancer crypto checkout',
+            'Onramp Pay, onramp-pay, onramp, WooCommerce crypto plugin, card to crypto, crypto cards, crypto exchange, fiat to crypto, buy crypto with card, crypto payments, crypto payment links, prepaid crypto card, stablecoin payouts, onramp payments, digital asset checkout, merchant crypto payments, freelancer crypto checkout',
       robots: 'index, follow',
       openGraph: {
             title: 'Onramp Pay – Card-to-Crypto Payments, Crypto Cards & Exchange',
             description:
-                  'Create card-to-crypto payments, issue crypto cards, exchange digital assets, and generate crypto payment links with Onramp Pay. Supports WooCommerce plugin installs and direct merchant/freelancer use.',
+                  'Create card-to-crypto payments, issue crypto cards, exchange digital assets, and generate crypto payment links with Onramp Pay. Supports WooCommerce plugin installs and direct merchant/freelancer use. Onramp Pay helps merchants and freelancers accept fiat-to-crypto checkout on their sites.',
             type: 'website',
             url: 'https://onramp-pay.com',
             siteName: 'Onramp Pay',
             images: [
                   {
-                        url: 'https://onramp-pay.com/assets/images/onramp-pay.png',
+                        url: 'https://onramp-pay.com/assets/images/onramp-pay.png?v=1',
                         width: 1200,
                         height: 630,
                         alt: 'Onramp Pay Card-to-Crypto Platform',
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
             card: 'summary_large_image',
             title: 'Onramp Pay – Card-to-Crypto Payments, Crypto Cards & Exchange',
             description:
-                  'Create card-to-crypto payments, issue crypto cards, exchange crypto, and generate payment links with Onramp Pay. Supports WooCommerce plugin installs and direct merchant/freelancer use.',
-            images: ['https://onramp-pay.com/assets/images/onramp-pay.png'],
+                  'Create card-to-crypto payments, issue crypto cards, exchange crypto, and generate payment links with Onramp Pay. Supports WooCommerce plugin installs and direct merchant/freelancer use. Onramp Pay helps merchants and freelancers accept fiat-to-crypto checkout on their sites.',
+            images: ['https://onramp-pay.com/assets/images/onramp-pay.png?v=1'],
       },
 };
 
@@ -85,6 +85,24 @@ export default function RootLayout({
                                                 '@type': 'AggregateRating',
                                                 ratingValue: '4.8',
                                                 ratingCount: '127',
+                                          },
+                                    }),
+                              }}
+                        />
+                        <script
+                              type="application/ld+json"
+                              dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                          '@context': 'https://schema.org',
+                                          '@type': 'WebSite',
+                                          name: 'Onramp Pay',
+                                          url: 'https://onramp-pay.com',
+                                          description:
+                                                'Onramp Pay is a card-to-crypto platform for merchants, freelancers, and WooCommerce sites. Create payment links, issue crypto cards, exchange assets, and accept fiat-to-crypto checkout.',
+                                          potentialAction: {
+                                                '@type': 'SearchAction',
+                                                target: 'https://onramp-pay.com/?q={search_term_string}',
+                                                'query-input': 'required name=search_term_string',
                                           },
                                     }),
                               }}
