@@ -43,6 +43,16 @@ export default function RootLayout({
       return (
             <html lang="en">
                   <head>
+                        {/* Google tag (gtag.js) */}
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18104808579"></script>
+                        <script>
+                              {`
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', 'AW-18104808579');
+                              `}
+                        </script>
                         <link rel="icon" href="/assets/images/onramp-pay-white.png" type="image/png" />
                         <meta name="theme-color" content="#4f46e5" />
                         <meta name="application-name" content="Onramp Pay Link Generator" />
