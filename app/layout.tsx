@@ -1,3 +1,5 @@
+
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import './globals.css';
@@ -141,8 +143,8 @@ export default function RootLayout({
                                                 <h4 className="text-sm font-bold uppercase tracking-[0.18em] text-slate-100">Company</h4>
                                                 <div className="flex flex-col gap-2 text-sm">
                                                       <a href="/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WooCommerce Plugin</a>
-                                                      <a onClick={() => alert('Coming Soon!')} className="hover:text-white transition-colors cursor-pointer">PrestaShop Plugin</a>
-                                                      <a onClick={() => alert('Coming Soon!')} className="hover:text-white transition-colors cursor-pointer">OpenCart Plugin</a>
+                                                      <a href='#' className="hover:text-white transition-colors cursor-pointer">PrestaShop Plugin</a>
+                                                      <a href='#' className="hover:text-white transition-colors cursor-pointer">OpenCart Plugin</a>
                                                       <a href="https://documenter.getpostman.com/view/14826208/2sBXcHiz2s" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">API Documentation</a>
                                                       <a href="mailto:support@onramp-pay.com" className="hover:text-white transition-colors">Contact Support</a>
                                                       <a href="mailto:support@onramp-pay.com" className="hover:text-white transition-colors">support@onramp-pay.com</a>
