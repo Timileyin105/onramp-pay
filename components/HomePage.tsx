@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
                                                 </p>
                                                 <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                                                       <a
-                                                            href="https://onramp-pay.com/downloads/onramppay-plugin.zip"
+                                                            href="/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className={`${primaryButton} w-full sm:w-auto`}
@@ -255,7 +255,7 @@ const HomePage: React.FC = () => {
 
                                                 <div className="mt-10">
                                                       <a
-                                                            href="https://onramp-pay.com/downloads/onramppay-plugin.zip"
+                                                            href="/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className={`${primaryButton} text-base px-8 py-4`}

@@ -21,14 +21,14 @@ export const sendPluginEmail = async (email: string, customerName: string) => {
           <p>We successfully received your payment. You can now download the Onramp Pay plugin.</p>
           <br/>
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://onramp-pay.com/downloads/onramppay-plugin.zip" 
+            <a href="/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip" 
                style="background-color: #4f46e5; color: white; padding: 14px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
                Download Plugin
             </a>
           </div>
           <br/>
           <p>If the button above doesn't work, copy and paste this link into your browser:</p>
-          <p>https://onramp-pay.com/downloads/onramppay-plugin.zip</p>
+          <p>/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip</p>
           <hr style="border: 1px solid #eee; margin: 20px 0;">
           <p style="color: #666; font-size: 12px;">© ${new Date().getFullYear()} Onramp Pay. All rights reserved.</p>
         </div>

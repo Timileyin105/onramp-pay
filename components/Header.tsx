@@ -30,7 +30,7 @@ const Header: React.FC = () => {
       ];
 
       const pluginLinks = [
-            { path: '/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip', label: 'WooCommerce Instant Payment', external: true },
+            { path: '/assets/plugins/woocommerce/onrampay-instant-payment-gateway.zip', label: 'WooCommerce Fiat-Crypto Payment', external: true },
             { path: '/assets/plugins/woocommerce/onrampay-crypto-payment-gateway.zip', label: 'WooCommerce Crypto Payment', external: true },
             { path: '#', label: 'PrestaShop Plugin', comingSoon: true },
             { path: '#', label: 'OpenCart Plugin', comingSoon: true },
